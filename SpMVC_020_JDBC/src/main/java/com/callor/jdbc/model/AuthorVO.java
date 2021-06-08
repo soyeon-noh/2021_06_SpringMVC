@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class authorVO {
+public class AuthorVO {
 	private String au_code;
 	private String au_name;
 	private String au_tel;

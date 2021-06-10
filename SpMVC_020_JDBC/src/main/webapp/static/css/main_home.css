@@ -1,0 +1,50 @@
+@charset "UTF-8";
+	
+	section#main_sec {
+		width: 100%;
+		margin: 5px auto;
+		border: 1px solid #999;
+		
+		display: flex;
+		/* justify-content: space-around;*/
+	}
+	
+	section#main_sec article {
+		flex: 1;
+		border: 1px solid green;
+		margin: 6px 3px;
+		padding: 5px;
+	}
+	
+	section#main_sec article ul, section#main_sec article ol {
+		margin: 0;
+		padding: 0;
+	}
+	
+	section#main_sec article li {
+		margin: 0 20px;
+		padding: 0 10px;
+	}
+	
+	section#ad_sec {
+		width: 100%;
+		border: 1px solid #999;
+		display: flex;
+	}
+	
+	section#ad_sec article{
+		flex:1;
+		margin: 5px 3px;
+		widthL100%;
+		height: 100px;
+		margin: 6px 3px;		
+		background-size:100% 100%; /* cover 가 안되네 왜지?*/
+		border-radius: 5px;
+	}
+	
+	/*
+	home.jsp의 
+	중간 부분 이미지를 표현하는 부분의 CSS는
+	rootPath 문제로 여기에 둘 수 없어서 
+	include_header.jspf 파일로 옮겼다.ㄴ
+	*/

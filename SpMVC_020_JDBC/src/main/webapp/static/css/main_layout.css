@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+h1.pass_title {
+	width: 90%;
+	margin: 10px auto;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 90%;
+	margin: 0 auto;
+}
+
+table th, td {
+	border-top: 1px solid #aaa;
+	padding: 5px 8px;
+}
+
+table td {
+/*	margin-left: 20px; 이거 적용이 안된다. 왜지?*/  
+	text-align: center;
+}
+
+table tr:last-child td{
+	border-bottom: 1px solid #aaa;
+}
+
+table tr:nth-child(odd) {
+	background-color: #ddd;
+}
+
+table tr:nth-child(even) {
+	background-color: #aaa;
+}
+
+/* hover 위치를 table th, td 아래에 뒀더니 안먹어서 아래로 옮김*/
+table tr:hover {
+	background-color: #eee;
+	cursor: pointer; 
+}
+
+div.btn_box{
+	width:90%;
+	margin: 5px auto;
+	text-align: right;
+}
+
+button {
+	/* 버튼이 여러개일 경우 내부 컨텐츠에따라 크기가 바뀔 수 있다.
+	바뀌지 않게하려면 고정 width등을 설정해주자.
+	*/
+	padding: 10px 20px;
+	
+	outline: 0;
+	border: 0;
+}
+
+butoon:hover {
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.7);
+	cursor: pointer;
+}

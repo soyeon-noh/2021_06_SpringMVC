@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         urlPath += "/member/join";
       }
 
-      alert(`내가 가야할 곳 ${urlPath}`); // 백팃을 쓰는 것은 문자열에 변수를 쓰기 위해서!
+      // alert(`내가 가야할 곳 ${urlPath}`); // 백팃을 쓰는 것은 문자열에 변수를 쓰기 위해서!
       location.href = urlPath;
     }
   });

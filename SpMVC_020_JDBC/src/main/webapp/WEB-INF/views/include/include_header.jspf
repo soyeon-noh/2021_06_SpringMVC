@@ -48,6 +48,21 @@
 	nav#main_nav li:first-child {
 		margin-left: 15px; 
 	}
+
+	/* 이것도 실행하면 가운데에 온대!	
+	nav#main_nav li:nth-of-type(3){
+		margin-left: auto;
+	}*/
+	
+	/* 
+	flex-item 의 특정한 요소의 margin-left를 auto로 지정하면
+	해당 요소부터 오른쪽으로 밀리는 layout을 만들 수 있다.
+	*/
+	nav#main_nav li:nth-of-type(5){
+		margin-left: auto;
+		/* 그 요소부터 오른쪽에 붙게된다.*/
+		/* 왼쪽 margin을 적절하게 주는 것!*/
+	}
 	
 	nav#main_nav li:hover {
 		background-color: #999;

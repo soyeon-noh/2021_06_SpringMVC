@@ -6,10 +6,7 @@
 <html>
 <%@ include file="/WEB-INF/views/include/include_head.jspf" %>
 <style>
-	button.btn_book_insert {
-		background-color: blue;
-		color:white;
-	}
+
 </style>
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf" %>
@@ -53,12 +50,12 @@
 		</tr>
 	</table>
 	<div class="btn_box">
-		<button class="btn_book_insert">도서등록</button>
+		<button class="btn_insert book">도서등록</button>
 	</div>
 	<%@ include file="/WEB-INF/views/include/include_footer.jspf" %>
 </body>
 <script>
-document.querySelector("button.btn_book_insert")
+document.querySelector("button.btn_insert.book")
 	.addEventListener("click",()=>{
 		
 		location.href = "${rootPath}/books/insert";

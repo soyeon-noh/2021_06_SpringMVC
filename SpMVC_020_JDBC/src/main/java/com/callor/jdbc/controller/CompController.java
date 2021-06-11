@@ -22,6 +22,10 @@ public class CompController {
 		this.compDao = compDao;
 		this.compService = compService;
 	}
+	@RequestMapping(value={"/",""}, method=RequestMethod.GET)
+	public String list() {
+		return "comp/list";
+	}
 	
 	// localhost:8080/jdbc/comp/insert 로 호출되는 함수
 	@RequestMapping(value="/insert", method=RequestMethod.GET) // insert GET method

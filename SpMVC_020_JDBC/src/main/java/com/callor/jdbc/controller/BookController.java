@@ -15,7 +15,7 @@ public class BookController {
 	// 끝에 / 가 붙어있거나 붙어있지 않거나 둘다!
 	// ""도 포함시켜주지않으면 맨끝에 / 가 안 붙었을 경우 문제가 생긴다.
 	@RequestMapping(value={"/",""}, method=RequestMethod.GET)
-	public String books() {
+	public String books() { // controller에서 method 이름은 중요하지x
 		
 		log.debug("Books Root");
 		return "books/list";

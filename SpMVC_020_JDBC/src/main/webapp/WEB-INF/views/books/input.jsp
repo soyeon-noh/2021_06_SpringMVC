@@ -5,57 +5,7 @@
 <!DOCTYPE html>
 <html>
 <%@ include file="/WEB-INF/views/include/include_head.jspf" %>
-<style>
-	form {
-		width: 80%;
-		margin: 15px auto;
-	}
-	
-	fieldset {
-		border: 1px solid green;
-		border-radius: 15px;
-	}
-	
-	legend { 
-		text-align: center;
-		padding: 10px 20px;
-		background-color: #aaa;
-	}
-	
-	form div {
-		width: 80%;
-		margin: 5px auto;
-	}
-	
-	form label { /* 기본적으로 inline 속성이라 width 를 줄수가 없음!*/
-		display: inline-block;
-		width: 20%; /* width로 줄 맞추고*/
-		
-		text-align: right; /* 오른쪽 정렬 */
-		margin: 4px 5px;
-		padding: 8px;
-		color: rgba(0, 0, 255, 0.6);
-		font-weight: bold;
-	}
-	
-	form input {
-		width: 70%;
-		margin: 4px 5px;
-		padding: 8px;
-		border-radius: 25px;
-		outline: 0; /* input box에  radius줬을때 각진외각선 보이는거 없애기*/
-		border-color: rgba(0,255,0,0.5);
-	}
-	
-	form input:focus {
-		border-color: #999;
-	}
-	
-	form input:hover {
-		background-color: #ddd;
-	}
-	
-</style>
+
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf" %>
 
@@ -92,9 +42,9 @@
 		</div>
 		</fieldset>
 	<div class="btn_box">
-		<button type="button" class="btn_book_insert">도서등록</button>
-		<button type="reset" class="btn_book_reset">새로작성</button>
-		<button type="button" class="btn_book_list">돌아가기</button>
+		<button type="button" class="btn_save book">저장</button>
+		<button type="reset" class="btn_reset book">새로작성</button>
+		<button type="button" class="btn_list book">돌아가기</button>
 		<!-- button type을 button으로하면 전송을 막는다.
 		스크립트로 처리할 수 있게.
 		reset으로하면 input에 적은 내용을 전부 초기화한다. -->

@@ -14,6 +14,7 @@
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf" %>
 	<h1 class="page_title">출판사정보</h1>
+	<section class="main_sec">
 	<table>
 		<tr>
 			<th>CODE</th>
@@ -43,6 +44,7 @@
 	<div class="btn_box">
 		<button class="btn_insert company">출판사등록</button>
 	</div>
+	</section>
 	<%@ include file="/WEB-INF/views/include/include_footer.jspf" %>
 </body>
 <script>

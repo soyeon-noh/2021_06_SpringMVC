@@ -8,7 +8,7 @@
 
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf" %>
-
+	<section class="main_sec">
 	<form method="POST">
 		<fieldset>
 		<legend>저자 정보 등록</legend>
@@ -42,6 +42,7 @@
 		reset으로하면 input에 적은 내용을 전부 초기화한다. -->
 	</div>
 	</form>
+	</section>
 
 	<%@ include file="/WEB-INF/views/include/include_footer.jspf" %>
 </body>

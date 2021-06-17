@@ -8,8 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
       let menuText = e.target.textContent;
 
       // `` backTit : 역 작은 따옴표
-      // JS에서 변수를 포함하는 문자열을 생성할 때 사용한다.
+      // JS에서 변수를 포함하는 문자열을 생성할 때 사용한다. // jsp에서 쓰면 el tag와 충돌일어나서 못씀.
       // let urlPath = rootPath; 로 쓰면 되는건데 그냥 백팃한번 써봤다!
+      // rootPath 문자열을 변수에 셋팅
       let urlPath = `${rootPath}`; // JSP에서 만든 <script> 속의 var rootPath 변수!!
 
       if (menuText === "HOME") {

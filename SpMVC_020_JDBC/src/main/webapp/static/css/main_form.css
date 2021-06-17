@@ -1,4 +1,5 @@
 @charset "UTF-8";
+	/* 여기도 form에 대하여 공통, 공유되는 속성을 지정해놓은 것 */
 
 	form {
 		width: 80%;

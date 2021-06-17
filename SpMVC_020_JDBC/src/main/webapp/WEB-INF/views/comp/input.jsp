@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 	<%@ include file="/WEB-INF/views/include/include_head.jspf" %>
+	
 <style>
 	form {
 		width: 80%;
@@ -52,7 +53,7 @@
 </style>
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf" %>
-	<h1>출판사 정보 등록</h1>
+	<section class="main_sec">
 	<form method="POST"> <!-- anction을 지정하지 않으면 처음 url이 디폴드 -->
 		<fieldset>
 		<legend>출판사 정보</legend>
@@ -83,6 +84,7 @@
 		</div>
 		</fieldset>
 	</form>
+	</section>
 
 	<%@ include file="/WEB-INF/views/include/include_footer.jspf" %>
 </body>

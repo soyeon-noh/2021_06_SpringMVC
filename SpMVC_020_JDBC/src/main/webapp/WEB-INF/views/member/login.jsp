@@ -76,11 +76,23 @@
 		background-color: #2ecc71;
 	}
 	
+	form#login_form div.msg {
+		margin: 5px auto;
+		padding: 12px 16px;
+		background-radius: 15px;
+		
+		background-color: red;
+		color: yellow;
+		
+		font-size: 20px;
+	}
+	
 </style>
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf" %>
 	<form id="login_form" method="POST">
 		<h2>로그인</h2>
+		<div class="msg">${MSG}</div>
 		<input name="m_username" id="m_username" placeholder="사용자 ID">
 		<input type="password" id= "m_password" name="m_password" placeholder="비밀번호">
 		<button type="button" class="btn_login">로그인</button>
@@ -89,6 +101,11 @@
 	<%@ include file="/WEB-INF/views/include/include_footer.jspf" %>
 </body>
 <script>
+
+//if("${MSG}" === "NONE"){
+	document.querySelector("div.msg").style.display = "${MSG}"
+//}
+
 document.querySelector("button.btn_join")
 	.addEventListener("click",()=>{
 		
@@ -102,7 +119,8 @@ document.querySelector("button.btn_login")
 		/*
 		view 단에서 입력 유효성 검사하기
 		값이 입력되었는가를 검사하기
-		입력되지 않으면 alert을 보이고 입력 box에 focus주기
+		입력되지 않으면 a
+		lert을 보이고 입력 box에 focus주기
 		*/
 		
 		if(username.value === ""){

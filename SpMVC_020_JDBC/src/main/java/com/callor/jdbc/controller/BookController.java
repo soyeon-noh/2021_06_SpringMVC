@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.callor.jdbc.model.UserVO;
 
+import ch.qos.logback.classic.Logger;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -32,6 +33,7 @@ public class BookController {
 			model.addAttribute("MSG", "LOGIN");
 			return "redirect:/member/login";
 		}
+		
 
 		log.debug("Books Root");
 		return "books/list";

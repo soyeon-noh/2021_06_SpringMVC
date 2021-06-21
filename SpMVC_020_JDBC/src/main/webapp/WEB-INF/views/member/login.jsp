@@ -15,6 +15,15 @@
 		background-color: #191919;
 		text-align: center;
 		border-radius:20px;
+		z-index: 500;
+		
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		
+		animation-name: naiTopDown;
+		animation-duration: 0.8s;
 	}
 	
 	form#login_form h2{
@@ -85,8 +94,25 @@
 		color: yellow;
 		
 		font-size: 20px;
+
 	}
 	
+	
+	@keyframes aniTopDown {
+		from {
+			top: -300px;
+			opacity: 0;
+		}
+		
+		to {
+			top: 50%;
+			opacity :1; 
+		}
+	}
+	
+	div#modal {
+		display: block;
+	}
 </style>
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf" %>

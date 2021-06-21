@@ -24,7 +24,12 @@
 	
 	section#main_sec article li {
 		margin: 0 20px;
-		padding: 0 10px;
+		padding: 0 7px;
+		
+		width: 100%;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 	}
 	
 	section#ad_sec {
@@ -61,3 +66,4 @@
 	rootPath 문제로 여기에 둘 수 없어서 
 	include_header.jspf 파일로 옮겼다.ㄴ
 	*/
+

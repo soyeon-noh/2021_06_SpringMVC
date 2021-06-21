@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.callor.jdbc.service.HomeService;
 import com.callor.jdbc.service.RentService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -34,9 +35,11 @@ public class HomeController {
 //	protected final BookDao bookDao; // Service 만드니까 필요없어짐
 
 	protected final RentService rentService;
-	public HomeController(RentService rentService) {
+	protected final HomeService homeService;
+	
+	public HomeController(RentService rentService, HomeService homeService) {
 		this.rentService = rentService;
-
+		this.homeService = homeService;
 	}
 	
 	/*
@@ -71,6 +74,7 @@ public class HomeController {
 		// 매개변수로 받고싶다고 local이랑 model 선언했는데
 		// spring container가 넣어준대
 		
+		homeService.dashBoard(model);
 		
 		/*
 		 * 매개변수로 전달받은 Model class type변수인 model에

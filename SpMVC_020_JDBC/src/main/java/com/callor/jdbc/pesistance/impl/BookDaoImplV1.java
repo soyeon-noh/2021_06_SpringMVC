@@ -39,12 +39,12 @@ public class BookDaoImplV1 implements BookDao{
 		
 		
 		List<BookVO> books = jdbcTemplate.query(sql,
-				new BeanPropertyRowMapper<BookVO>(BookVO.class) 
+				new BeanPropertyRowMapper<BookVO>(BookVO.class)	
 				// 내가 받는 data가 VO형태이니 그걸 받아서 내가 적은 위치에 담아달라. 그리고 List에도 담아달라.
 				// ( 이전엔 sql문 넣고 결과문 받고 rSet에 담아서...  VO에 담고.. List에 담았었음 )
 		);
 		log.debug("SELECT {}", books.toString());
-		return null;
+		return books;
 	}
 
 	@Override

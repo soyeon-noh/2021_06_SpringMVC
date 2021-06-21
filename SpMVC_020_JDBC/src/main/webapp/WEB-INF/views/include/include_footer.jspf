@@ -13,6 +13,11 @@
 		padding: 5px;
 	}
 </style>
+	<div id="modal">
+		<span>X</span>
+	</div>
+	
 	<footer>
 		<address>CopyRight &copy; noso42@daum.net</address>
 	</footer>
+	

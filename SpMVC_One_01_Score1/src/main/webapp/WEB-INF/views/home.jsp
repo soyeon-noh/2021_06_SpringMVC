@@ -22,15 +22,15 @@
         <th>총점</th>
         <th>평균</th>
       </tr>
-      <c:forEach items="${TTLIST}" var="TL">
+      <c:forEach items="${HMLIST}" var="HM">
 	      <tr>
-	        <td>${TT.학번}</td>
-	        <td>${TT.이름}</td>
-	        <td>${TT.전공}</td>
-	        <td>${TT.학년}</td>
-	        <td>${TT.응시과목}</td>
-	        <td>${TT.총점}</td>
-	        <td>${TT.평균}</td>
+	        <td>${HM.학번}</td>
+	        <td>${HM.이름}</td>
+	        <td>${HM.전공}</td>
+	        <td>${HM.학년}</td>
+	        <td>${HM.응시과목}</td>
+	        <td>${HM.총점}</td>
+	        <td>${HM.평균}</td>
 	      </tr>
 	  </c:forEach>
 	</table>

@@ -11,12 +11,13 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class TotalDTO {
+public class HomeDTO {
 
-	private String 학번;
-	private String 이름;
-	private String 전공;
-	private String 학년;
-	private String 응시과목;
-	private String 총점;
+	private String t_num;
+	private String t_name;
+	private String t_dept;
+	private String t_grade;
+	private String t_count;
+	private String t_sum;
+	private String t_avg;
 }

@@ -64,3 +64,20 @@ WHERE sc_stnum = '20210001';
 
 DROP TABLE tbl_student;
 DROP TABLE tbl_score;
+
+CREATE VIEW view_HOME AS
+(
+	SELECT st_num t_num, 
+		ST.st_name t_name, 
+		ST.st_dept t_dept,
+		ST.st_grade t_grade,
+		COUNT(SC.sc_subject) t_count,
+		SUM(SC.sc_score) t_sum,
+		ROUND(SUM(SC.sc_score)/COUNT(SC.sc_subject),2) t_avg
+	FROM  tbl_student ST
+		LEFT JOIN tbl_score SC
+			ON ST.st_num = SC.sc_stnum
+	GROUP BY st_num
+);
+
+DROP VIEW view_total;

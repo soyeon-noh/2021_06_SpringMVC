@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.callor.jdbc.model.AuthorVO;
+import com.callor.jdbc.model.CompVO;
 import com.callor.jdbc.pesistance.AuthorDao;
 import com.callor.jdbc.service.AuthorService;
 
@@ -35,5 +36,18 @@ public class authorServiceImplV1 implements AuthorService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<AuthorVO> findByNameAndTel(String text) {
+		
+		List<AuthorVO> mainList = auDao.findByAName(text);
+		List<AuthorVO> telList = auDao.findByATel(text);
+		
+		mainList.addAll(telList);
+		
+		return mainList;
+	}
+	
+
 
 }

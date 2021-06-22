@@ -19,7 +19,7 @@
 <script>
 	var rootPath = "${rootPath}"
 </script>
-<script src="${rootPath}/static/js/book_input.js?ver=2021-06-22-003"></script>
+<script src="${rootPath}/static/js/book_input.js?ver=2021-06-22-012"></script>
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf" %>
 	<section class="main_sec">
@@ -50,11 +50,12 @@
 		</div>
 				<div>
 			<label>가격</label>
-			<input name="bk_price" id="bk_price" placeholder=""/>
+			<input name="bk_price" id="bk_price" value="0" placeholder=""/> 
+			<!-- 오류를 방지하기위해 int값인 가격과 페이지의 기본값을 0으로 설정 -->
 		</div>
 		<div>
 			<label>페이지수</label>
-			<input name="bk_pages" id="bk_pages" placeholder=""/>
+			<input name="bk_pages" id="bk_pages" value="0" placeholder=""/>
 		</div>
 		</fieldset>
 	<div class="btn_box">

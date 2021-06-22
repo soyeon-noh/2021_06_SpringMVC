@@ -32,7 +32,7 @@ public class BookVO {
 	 * DB에 insert를 수행할때 해당칼럼이 not null로 되어 있을 때
 	 * 별다른 처리를 하지 않아도 SQL exception이 발생하지 않는다.
 	 */
-	private int bk_pages;// 
-	private int bk_price;//
+	private int bk_pages;// INT
+	private int bk_price;// INT
 	
 }

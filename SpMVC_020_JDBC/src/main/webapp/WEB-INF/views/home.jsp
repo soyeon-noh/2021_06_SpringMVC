@@ -42,9 +42,9 @@
 					<c:when test="${not empty BOOKS}">
 						<c:forEach var="index" begin="0" end="4">
 							<li>
-								${BOOKS[index].cp_title}&nbsp;&nbsp;, <!-- 빈칸만들기 &nbsp; -->
-								${BOOKS[index].cp_ccode}&nbsp;&nbsp;,
-								${BOOKS[index].cp_acode}
+								${BOOKS[index].bk_title}&nbsp;&nbsp;, <!-- 빈칸만들기 &nbsp; -->
+								${BOOKS[index].bk_ccode}&nbsp;&nbsp;,
+								${BOOKS[index].bk_acode}
 								
 							</li> <!-- 속성인 .cp_name -->
 						</c:forEach>

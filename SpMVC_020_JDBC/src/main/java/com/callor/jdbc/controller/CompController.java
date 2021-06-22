@@ -43,9 +43,19 @@ public class CompController {
 	}
 	
 	@RequestMapping(value= {"/search"}, method=RequestMethod.GET)
-	public String getList(Model model) {
-		List<CompVO> compList = compService.selectAll();
+	public String getList(
+			@RequestParam(name="cp_title", required = false, defaultValue="")
+			String text, Model model) {
+		
+		List<CompVO> compList = null;
+		log.debug("comp : {}", text);
+		if(text == null || text.trim().equals("")) {
+			compList = compService.selectAll();
+		} else {
+			compList = compService.findByTitleAndCeoAndTel(text);
+		}
 		model.addAttribute("COMPS", compList);
+		
 		return "comp/search";	
 	}
 	

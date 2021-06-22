@@ -36,7 +36,7 @@
 	form input {
 		width: 70%;
 		margin: 4px 5px;
-		padding: 8px;
+		padding: 8px 12px;
 		border-radius: 25px;
 		outline: 0; /* input box에  radius줬을때 각진외각선 보이는거 없애기*/
 		border-color: rgba(0,255,0,0.5);

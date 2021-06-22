@@ -13,6 +13,7 @@ import com.callor.jdbc.model.AuthorVO;
 import com.callor.jdbc.model.UserVO;
 import com.callor.jdbc.service.AuthorService;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -55,6 +56,15 @@ public class AuthorController {
 		return "author/list";
 	}
 
+	@RequestMapping(value = "/search", method =RequestMethod.GET)
+	public String search(Model model) {
+		
+		List<AuthorVO> authorList = auService.selectAll();
+		model.addAttribute("AUTH_LIST", authorList);
+		
+		return "author/search";
+	}
+	
 	// 링크를 타고 들어오는 것들?
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
 	public String insert() {

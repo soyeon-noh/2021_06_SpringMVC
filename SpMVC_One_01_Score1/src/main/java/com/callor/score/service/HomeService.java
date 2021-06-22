@@ -6,5 +6,5 @@ import com.callor.score.model.HomeDTO;
 
 public interface HomeService {
 
-	public List<HomeDTO> homeList();
+	public List<HomeDTO> showList();
 }

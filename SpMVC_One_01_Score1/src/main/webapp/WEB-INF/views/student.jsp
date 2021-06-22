@@ -19,19 +19,17 @@
 				<th>이름</th>
 				<th>전공</th>
 				<th>학년</th>
-				<th>응시과목</th>
-				<th>총점</th>
-				<th>평균</th>
+				<th>전화번호</th>
+				<th>주소</th>
 			</tr>
-			<c:forEach items="${HMLIST}" var="HM">
+			<c:forEach items="${STLIST}" var="ST">
 				<tr>
-					<td>${HM.h_num}</td>
-					<td>${HM.h_name}</td>
-					<td>${HM.h_dept}</td>
-					<td>${HM.h_grade}</td>
-					<td>${HM.h_count}</td>
-					<td>${HM.h_sum}</td>
-					<td>${HM.h_avg}</td>
+					<td>${ST.st_num}</td>
+					<td>${ST.st_name}</td>
+					<td>${ST.st_dept}</td>
+					<td>${ST.st_grade}</td>
+					<td>${ST.st_tel}</td>
+					<td>${ST.st_addr}</td>
 				</tr>
 			</c:forEach>
 		</table>

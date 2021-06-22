@@ -18,15 +18,10 @@ public class HomeServiceImplV1 implements HomeService{
 	public HomeServiceImplV1(HomeDao homeDao) {
 		this.homeDao = homeDao;
 	}
-	
-	
-	
+
 	@Override
-	public List<HomeDTO> homeList() {
-		// TODO Auto-generated method stub
-		
-		
-		return null;
+	public List<HomeDTO> showList() {
+		return homeDao.selectAll();
 	}
 
 }

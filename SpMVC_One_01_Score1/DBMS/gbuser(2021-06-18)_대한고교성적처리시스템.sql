@@ -81,3 +81,4 @@ CREATE VIEW view_HOME AS
 );
 
 DROP VIEW view_HOME;
+

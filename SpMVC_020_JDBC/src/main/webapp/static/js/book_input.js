@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let text = e.target.value; // input box에 넣은 문자열
 
       if (id === "bk_ccode") {
-        fetch(`${rootPath}/comp/list`) // ★ js만을 사용하는 ajax 코드(비동기) 'fetch'
+        fetch(`${rootPath}/comp/search`) // ★ js만을 사용하는 ajax 코드(비동기) 'fetch'
           .then((res) => {
             return res.text(); // response를 통쨰로 가져와서 text로 리턴
           })

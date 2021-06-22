@@ -42,7 +42,7 @@ public class CompController {
 		return "comp/list";
 	}
 	
-	@RequestMapping(value= {"/list"}, method=RequestMethod.GET)
+	@RequestMapping(value= {"/search"}, method=RequestMethod.GET)
 	public String getList(Model model) {
 		List<CompVO> compList = compService.selectAll();
 		model.addAttribute("COMPS", compList);

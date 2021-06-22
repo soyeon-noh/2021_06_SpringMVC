@@ -24,13 +24,13 @@
       </tr>
       <c:forEach items="${HMLIST}" var="HM">
 	      <tr>
-	        <td>${HM.학번}</td>
-	        <td>${HM.이름}</td>
-	        <td>${HM.전공}</td>
-	        <td>${HM.학년}</td>
-	        <td>${HM.응시과목}</td>
-	        <td>${HM.총점}</td>
-	        <td>${HM.평균}</td>
+	        <td>${HM.h_num}</td>
+	        <td>${HM.h_name}</td>
+	        <td>${HM.h_dept}</td>
+	        <td>${HM.h_grade}</td>
+	        <td>${HM.h_count}</td>
+	        <td>${HM.h_sum}</td>
+	        <td>${HM.h_avg}</td>
 	      </tr>
 	  </c:forEach>
 	</table>

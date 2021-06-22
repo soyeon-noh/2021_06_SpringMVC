@@ -67,17 +67,17 @@ DROP TABLE tbl_score;
 
 CREATE VIEW view_HOME AS
 (
-	SELECT st_num t_num, 
-		ST.st_name t_name, 
-		ST.st_dept t_dept,
-		ST.st_grade t_grade,
-		COUNT(SC.sc_subject) t_count,
-		SUM(SC.sc_score) t_sum,
-		ROUND(SUM(SC.sc_score)/COUNT(SC.sc_subject),2) t_avg
+	SELECT st_num h_num, 
+		ST.st_name h_name, 
+		ST.st_view_homedept h_dept,
+		ST.st_grade h_grade,
+		COUNT(SC.sc_subject) h_count,
+		SUM(SC.sc_score) h_sum,
+		ROUND(SUM(SC.sc_score)/COUNT(SC.sc_subject),2) h_avg
 	FROM  tbl_student ST
 		LEFT JOIN tbl_score SC
 			ON ST.st_num = SC.sc_stnum
 	GROUP BY st_num
 );
 
-DROP VIEW view_total;
+DROP VIEW view_HOME;

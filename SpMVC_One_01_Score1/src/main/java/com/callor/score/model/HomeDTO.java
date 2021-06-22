@@ -13,11 +13,11 @@ import lombok.ToString;
 @AllArgsConstructor
 public class HomeDTO {
 
-	private String t_num;
-	private String t_name;
-	private String t_dept;
-	private String t_grade;
-	private String t_count;
-	private String t_sum;
-	private String t_avg;
+	private String h_num;
+	private String h_name;
+	private String h_dept;
+	private String h_grade;
+	private String h_count;
+	private String h_sum;
+	private String h_avg;
 }

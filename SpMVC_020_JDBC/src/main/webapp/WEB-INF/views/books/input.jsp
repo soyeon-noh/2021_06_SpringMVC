@@ -14,7 +14,7 @@
 <script>
 	var rootPath = "${rootPath}"
 </script>
-<script src="${rootPath}/static/js/book_input.js?ver=2021-06-21-001"></script>
+<script src="${rootPath}/static/js/book_input.js?ver=2021-06-22-001"></script>
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf" %>
 	<section class="main_sec">

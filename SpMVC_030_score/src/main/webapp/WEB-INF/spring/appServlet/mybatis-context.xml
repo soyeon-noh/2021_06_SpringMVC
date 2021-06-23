@@ -12,20 +12,33 @@
 	<!-- dataSource -->
 	<bean id="ds" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-		<property name="url" value= "jdbc:mysql://localhost:3306/mybook"/>
+		<property name="url" value= "jdbc:mysql://localhost:3306/db_school"/>
 		<property name="username" value="gbUser"/>
 		<property name="password" value="12345"/>
+	</bean> 
 	
-	</bean>
-	
-	<!-- sessionFactory -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<!-- sessionFactory   아래 3가지 클래스를 버무려서 만들어라! -->
+	<bean id="sqlSessionFactory" 
+		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds"/>
+		<property name="mapperLocations" 
+			value="/WEB-INF/spring/mybatis-mapper/*-mapper.xml"/> 
+			<!-- SQL 명령어만 xml형태로 저장해놓음 -->
+			<!-- *-mapper 모든 mapper다 읽을 수 있게 설정 -->
+		<property name="typeAliasesPackage" 
+			value="com.callor.score.model"/> 
+			<!-- return하거나 매개변수로 쓰는 VO typeAliasesPackage 로 지정된 VO에 챙겨놓음 -->
 	</bean>
+
+	<mybatis-spring:scan 
+		base-package="com.callor.score.dao"/> 
+		<!--  dao 인터페이스 만들어둔 메서드(CRUD 담당) 스캔 -->
+	
 	<!-- sessionTemplate -->
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory"/>
 	</bean>
+	
 	
 	
 </beans>

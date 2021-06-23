@@ -9,6 +9,7 @@
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf"%>
 	<section class="main_sec">
+		<h1 class="page_title">출판사정보</h1>
 		<table>
 			<tr>
 				<th>CODE</th>

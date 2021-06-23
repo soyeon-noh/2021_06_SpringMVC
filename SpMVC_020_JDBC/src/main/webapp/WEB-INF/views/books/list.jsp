@@ -11,6 +11,7 @@
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf" %>
 	<section class="main_sec">
+	<h1 class="page_title">도서정보</h1>
 	<table>
 		<tr>
 			<th>NO.</th>
@@ -31,9 +32,9 @@
 					<tr>
 						<td>${ST.count}</td>
 						<td>${BOOK.bk_isbn}</td>
-						<td>${BOOK.bk_title}</td>
-						<td>${BOOK.bk_ccode}</td>
-						<td>${BOOK.bk_acode}</td>
+						<td><span><label class="truncate">${BOOK.bk_title}</label></span></td>
+						<td><span><label class="truncate">${BOOK.bk_ccode}</label></span></td>
+						<td><span><label class="truncate">${BOOK.bk_acode}</label></span></td>
 						<td>${BOOK.bk_date}</td>
 						<td>${BOOK.bk_pages}</td>
 						<td>${BOOK.bk_price}</td>

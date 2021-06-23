@@ -1,7 +1,5 @@
-
 @charset "UTF-8";
 /* 공유, 공통  css를 지정해 놓았다. */
-
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -15,19 +13,24 @@ body {
 	height: 100vh;
 }
 
+h1.page_title {
+	width: 90%;
+	/* top, right, botton, left */
+	margin: 10px auto 0 auto;
+}
+
 section.main_sec {
 	flex: auto;
 	overflow: auto;
 }
 
-header{
+header {
 	background-color: green;
 	color: white;
 	text-shadow: 1px 1px 1px black;
 	text-align: center;
 	padding: 2rem;
 }
-
 
 /*
 style 지정을 할 때
@@ -45,6 +48,15 @@ tag에 id나 class를 부착하지 않고 지정하는 경우
 	include 하여 사용하는 방법
 */
 table {
+	/* table-layout
+		css 2.1 적용 spec
+		table 구성했을때 td에 있는 
+		text(content)의 길이가 변동되거나 할때
+		table의 전체 모양이 움찔거리는 현상을 
+		방지하는 속성
+		
+	*/
+	table-layout: fixed;
 	border-collapse: collapse;
 	border-spacing: 0;
 	width: 90%;
@@ -54,27 +66,61 @@ table {
 table th, td {
 	border-top: 1px solid #aaa;
 	padding: 5px 8px;
+	/* text font 크기에 따라 높이를 고정하는 속성 */
+	height: 2rem;
 }
 
 table td {
-/*	margin-left: 20px; 이거 적용이 안됐었다. 왜지?*/
-	margin-left: 30px;  
-	text-align: center;
+	/*	margin-left: 20px; 이거 적용이 안됐었다. 왜지?*/
+	margin-left: 30px;
+	text-align: left;
 	padding-left: 10px;
+
+}
+/* 
+	td의 text가 넘칠경우 ellipsis를 적용하는데 
+	단순히 td에 적용하면 이웃하는 다른 td의 글자와 겹치는 현상 발생.
+	이것을 방지하기 위해 속성 설정.
+
+*/
+table td span {
 	
-	max-width: 0; /* table 에서 이걸 설정해야 제대로 뭔가가됐대*/
+	position: relative;
+	height: 1.2rem;
+	display: inline-block;
+	margin-top: 5px;
+}
+
+table td label.truncate {
+	max-width: 80px; /* table 에서 이걸 설정해야 제대로 뭔가가됐대*/
 	overflow: hidden;
+	display: inline-block; /* 이거안하면 적용이안됨 */
 	white-space: nowrap; /* 줄바꿈하지않기 */
 	text-overflow: ellipsis;
+	cursor: inherit;
 }
+
+
 
 /* td에 마우스 hover되면 ellipsis를 해제하여 text를 그대로 보여주기 */
-table td:hover { 
-	overflow: visible; /* 마우스 올리면 다 보여주기*/
-	text-overflow: inherit; /* ellipsis 해제됨 */
+/* table td:hover {
+	overflow: visible; 마우스 올리면 다 보여주기
+	text-overflow: inherit; ellipsis 해제됨
+} */
+
+/* hover위치변경 */
+table td:hover label.truncate {
+	position: absolute;
+	max-width: none;
+	background-color: #aaa;
+	overflow: visible;
+	top: -6px;
+	padding: 5px 20px 5px 0;
+	z-index: 100;
 }
 
-table tr:last-child td{
+
+table tr:last-child td {
 	border-bottom: 1px solid #aaa;
 }
 
@@ -83,17 +129,17 @@ table tr:nth-child(odd) {
 }
 
 table tr:nth-child(even) {
-	background-color: #aaa;
+	background-color: #eee;
 }
 
 /* hover 위치를 table th, td 아래에 뒀더니 안먹어서 아래로 옮김*/
 table tr:hover {
-	background-color: #eee;
-	cursor: pointer; 
+	background-color: #aaa;
+	cursor: pointer;
 }
 
-div.btn_box{
-	width:90%;
+div.btn_box {
+	width: 90%;
 	margin: 5px auto;
 	text-align: right;
 }
@@ -103,44 +149,41 @@ button {
 	바뀌지 않게하려면 고정 width등을 설정해주자.
 	*/
 	padding: 10px 20px;
-	
 	outline: 0;
 	border: 0;
 	border-radius: 5px;
 }
 
 butoon:hover {
-	box-shadow: 2px 2px 2px rgba(0,0,0,0.7);
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
 	cursor: pointer;
 }
 
 button.btn_insert {
 	background-color: blue;
-	color:white;
+	color: white;
 }
 
 button.btn_save {
 	background-color: blue;
-	color:white;
+	color: white;
 }
 
 button.btn_reset {
 	background-color: green;
-	color:white;
+	color: white;
 }
 
 button.btn_list {
 	background-color: orange;
-	color:white;
+	color: white;
 }
 
 button.btn_delete {
 	background-color: red;
-	color:white;
+	color: white;
 }
 
-
-	
 div#modal {
 	position: fixed;
 	top: 0;
@@ -182,7 +225,6 @@ section.search_sec {
 	left: 50%;
 	/* 자기 몸체 크기의 x방향, y방향으로 50%만큼 후진 */
 	transform: translate(-50%, -50%);
-
 	background-color: white;
 	opacity: 1;
 	width: 80%;
@@ -190,7 +232,6 @@ section.search_sec {
 	display: flex;
 	justify-content: center;
 	align-content: center;
-	
 	overflow: auto;
 	z-index: 1000;
 }

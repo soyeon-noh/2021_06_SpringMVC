@@ -9,7 +9,7 @@
 	<%@ include file = "/WEB-INF/views/include/include_header.jspf" %>
 	<section id="main_sec">
 		<article>
-			<h3>출판사</h3>
+			<h1 class="page_title">출판사</h1>
 			<ul>
 				<c:choose>
 					<c:when test="${not empty COMPS}">

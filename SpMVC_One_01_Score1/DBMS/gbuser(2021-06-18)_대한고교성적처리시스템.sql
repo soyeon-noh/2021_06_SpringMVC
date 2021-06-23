@@ -67,9 +67,9 @@ DROP TABLE tbl_score;
 
 CREATE VIEW view_HOME AS
 (
-	SELECT st_num h_num, 
+	SELECT ST.st_num h_num, 
 		ST.st_name h_name, 
-		ST.st_view_homedept h_dept,
+		ST.st_dept h_dept,
 		ST.st_grade h_grade,
 		COUNT(SC.sc_subject) h_count,
 		SUM(SC.sc_score) h_sum,
@@ -82,3 +82,4 @@ CREATE VIEW view_HOME AS
 
 DROP VIEW view_HOME;
 
+SELECT * FROM tbl_student;

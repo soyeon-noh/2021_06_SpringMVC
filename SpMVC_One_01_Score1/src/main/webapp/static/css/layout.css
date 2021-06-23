@@ -11,6 +11,12 @@ div#container {
 	margin: 0 auto;
 }
 
+h1.title {
+	text-align: center;
+	color: #5b4e5d;
+	margin: 10px;
+}
+
 table {
 	width: 90%;
 	margin: 30px auto;

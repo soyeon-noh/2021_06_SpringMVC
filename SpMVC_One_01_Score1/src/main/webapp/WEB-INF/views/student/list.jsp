@@ -6,13 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>대한 고교 성적처리</title>
-<link href="${rootPath}/static/css/layout.css?ver=2021-06-22-002"
+<title>대한 고교 성적처리 - 학생정보</title>
+<link href="${rootPath}/static/css/layout.css?ver=2021-06-22-004"
 	rel="stylesheet" />
 </head>
 <body>
 	<div id="container">
 		<%@ include file="/WEB-INF/views/include/include_nav.jspf"%>
+		<h1 class="title">학생정보</h1>
 		<table class="list">
 			<tr>
 				<th>학번</th>
@@ -23,7 +24,7 @@
 				<th>주소</th>
 			</tr>
 			<c:forEach items="${STLIST}" var="ST">
-				<tr>
+				<tr data-num="${ST.st_num}">
 					<td>${ST.st_num}</td>
 					<td>${ST.st_name}</td>
 					<td>${ST.st_dept}</td>

@@ -31,7 +31,7 @@ public class StudentController {
 		log.debug("studentList 가져오기 : {}", stList);
 		model.addAttribute("STLIST",stList);
 		
-		return "student";
+		return "student/list";
 	}
 	
 }

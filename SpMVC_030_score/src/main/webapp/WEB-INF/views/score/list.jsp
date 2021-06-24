@@ -14,7 +14,7 @@
 	}
 </style>
 
-
+<h2>성적 리스트</h2>
 <table>
 	<tr>
 		<th>No.</th>
@@ -26,13 +26,13 @@
 	</tr>
 
 	<c:choose>
-		<c:when test="${empty SCLIST}">
+		<c:when test="${empty SCORES}">
 			<tr>
 				<td colspan="5">데이터가 없음</td>
 			</tr>
 		</c:when>
 		<c:otherwise>
-			<c:forEach items="${SCLIST}" var="SC">
+			<c:forEach items="${SCORES}" var="SC">
 				<tr>
 					<td>${SC.sc_seq}</td>
 					<td>${SC.sc_stnum}</td>
@@ -47,6 +47,6 @@
 </table>
 <div class="btn_box">
 	<button class="score insert">성적등록</button>
-	<button class="score student insert">학생정보 바로가기</button>
+	<button class="score student list">학생정보 바로가기</button>
 </div>
 

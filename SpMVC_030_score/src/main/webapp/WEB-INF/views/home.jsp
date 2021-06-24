@@ -21,6 +21,7 @@ body {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
+	overflow: auto;
 }
 
 header {
@@ -44,10 +45,17 @@ section#main_sec {
 	display: flex;
 	flex-direction: column;
 	/*버튼이 아래로 배치될 수 있게 설정하는 부분*/
-	background: url("${rootPath}/static/images/section_background.jpg")
-		no-repeat;
+	background: linear-gradient(to bottom, purple, yellow);
 	background-size: 100% 100%;
 	background-attachment: fixed;
+}
+
+h2{
+	width: 90%;
+	color: white;
+	margin: 10px auto 0 auto;
+	padding: 1rem;
+	border: 1px solid #aaa;
 }
 
 table {
@@ -118,6 +126,58 @@ button:hover {
 	box-shadow: 2px 2px 2px 2px black;
 	cursor: pointer;
 }
+
+form {
+	width: 90%;
+	margin: 0 auto 10px auto;
+}
+
+fieldset {
+	background-color: #eee;
+	border: 1px solid purple;
+	border-radius: 10px;
+	padding: 0.7rem;
+}
+
+form label, form input{
+	display: inline-block;
+	margin: 5px;
+	padding: 5px;
+}
+
+form label {
+	width: 30%;
+	text-align: right;
+	color: purple;
+	font-weight: bold;
+}
+
+form input {
+	width: 60%;
+	outline: 0; /* input box 라인 없애기 */
+	border: #aaa;
+	border-radius: 30px;
+}
+
+form input:hover {
+	background: #bbb;
+}
+
+form button.save {
+	background-color: blue;
+	color: white;
+}
+
+form button.reset {
+	background-color: olive;
+	color: white;
+}
+
+form button.list {
+	background-color: green;
+	color: white;
+}
+
 </style>
 </head>
 <body>
@@ -133,6 +193,12 @@ button:hover {
 			<c:when test="${BODY eq 'SCORE_VIEW'}">
 				<%@ include file="/WEB-INF/views/score/list.jsp"%>
 			</c:when>
+			<c:when test="${BODY eq 'STUDENT_LIST'}">
+				<%@ include file="/WEB-INF/views/student/list.jsp"%>
+			</c:when>
+			<c:when test="${BODY eq 'STUDENT_INPUT'}">
+				<%@ include file="/WEB-INF/views/student/input.jsp" %>
+			</c:when>
 			<c:otherwise>
 				<%@ include file="/WEB-INF/views/main.jsp"%>
 			</c:otherwise>
@@ -140,10 +206,41 @@ button:hover {
 	</section>
 </body>
 <script>
-document.querySelector("button.student.insert")
-	.addEventListener("click",(e)=>{
+/*
+ 	JS 코드에서 event를 등록할 때 현재 화면에 없는 DOM 요소에
+ 	addEvent를 설정하면 없는 함수라는 오류가 발생한다.
+ 	그 이유는 현재 화면에 없는 DOM 요소를 querySelector 하면
+ 	결과값이 null 이기 때문에 발생하는 문제이다.
+ 	
+ 	JS 코드를 통합하여 모음으로 관리할때는
+ 	addEvent를 하려고 하는 요소가 있는지를 먼저 검사한 후 
+ 	addEvent를 수행해 주어야 한다.
+ */
+let st_list =  document.querySelector("button.student.list");
+let st_insert = document.querySelector("button.student.insert")
+let home = document.querySelector("button.student.home");
+
+
+// st_list가 있으면 (js의 고유한 if문) 
+// 버튼이 있을때만 이벤트가 작동해라!)
+if(st_list){
+	st_list.addEventListener("click",(e)=>{
 		location.href = "${rootPath}/student"
-})
+	})
+}
+
+if(st_insert){
+	st_insert.addEventListener("click",(e)=>{
+		location.href = "${rootPath}/student/insert"
+	})
+}
+
+if(home){
+	home.addEventListener("click",(e)=>{
+		location.href = "${rootPath}/"
+	})
+}
+
 </script>
 
 </html>

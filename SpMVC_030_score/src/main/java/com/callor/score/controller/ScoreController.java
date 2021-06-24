@@ -29,7 +29,7 @@ public class ScoreController {
 		
 		List<ScoreDTO> scList = scService.selectViewAll();
 		log.debug("Score selectViewAll {}", scList);
-		model.addAttribute("SCLIST", scList);
+		model.addAttribute("SCORES", scList);
 		
 		model.addAttribute("BODY", "SCORE_VIEW");
 		return "home";

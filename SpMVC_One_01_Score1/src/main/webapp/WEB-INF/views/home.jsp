@@ -10,6 +10,7 @@
 <link href="${rootPath}/static/css/layout.css?ver=2021-06-22-004"
 	rel="stylesheet" />
 </head>
+<script src="${rootPath}/static/js/home.js?ver=2021-06-23-001"></script>
 <body>
 	<div id="container">
 		<%@ include file="/WEB-INF/views/include/include_nav.jspf"%>
@@ -25,7 +26,7 @@
 				<th>평균</th>
 			</tr>
 			<c:forEach items="${HMLIST}" var="HM">
-				<tr>
+				<tr data-num="${HM.h_num}">
 					<td>${HM.h_num}</td>
 					<td>${HM.h_name}</td>
 					<td>${HM.h_dept}</td>

@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.callor.score.model.HomeDTO;
+import com.callor.score.model.ScoreVO;
 import com.callor.score.persistance.HomeDao;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,9 +34,15 @@ public class HomeDaoImplV1 implements HomeDao{
 	}
 
 	@Override
-	public HomeDTO findById(String pk) {
-		// TODO Auto-generated method stub
-		return null;
+	public HomeDTO findById(String h_num) {
+		String sql = " SELECT * FROM view_HOME ";
+		sql += " WHERE h_num = ? ";
+		
+		RowMapper<HomeDTO> homeMapper
+			= new BeanPropertyRowMapper<HomeDTO>(HomeDTO.class);
+		HomeDTO home
+			= (HomeDTO) jdbcTemplate.queryForObject(sql, new Object[] {h_num}, homeMapper);
+		return home;
 	}
 
 	@Override
@@ -53,6 +61,18 @@ public class HomeDaoImplV1 implements HomeDao{
 	public int delete(String pk) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<HomeDTO> findByNum(String h_num) {
+		String sql = " SELECT * FROM view_HOME ";
+		sql += " WHERE h_num = ? ";
+		
+		RowMapper<HomeDTO> infoMapper
+			= new BeanPropertyRowMapper<HomeDTO>(HomeDTO.class);
+		List<HomeDTO> scoreList
+			= jdbcTemplate.query(sql, new Object[] {h_num}, infoMapper);
+		return scoreList;
 	}
 
 }

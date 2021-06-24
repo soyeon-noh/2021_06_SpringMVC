@@ -7,5 +7,6 @@ import com.callor.score.model.ScoreVO;
 public interface ScoreService {
 
 	public List<ScoreVO> showList();
+	public List<ScoreVO> showfindByNum(String sc_stnum);
 	
 }

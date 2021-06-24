@@ -38,6 +38,7 @@ public class HomeDaoImplV1 implements HomeDao{
 		String sql = " SELECT * FROM view_HOME ";
 		sql += " WHERE h_num = ? ";
 		
+		log.debug("여기에 학번넘어옴?",h_num);
 		RowMapper<HomeDTO> homeMapper
 			= new BeanPropertyRowMapper<HomeDTO>(HomeDTO.class);
 		HomeDTO home
@@ -47,7 +48,6 @@ public class HomeDaoImplV1 implements HomeDao{
 
 	@Override
 	public int insert(HomeDTO vo) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

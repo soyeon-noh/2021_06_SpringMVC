@@ -24,4 +24,9 @@ public class ScoreServiceImplV1 implements ScoreService{
 		return scoreDao.selectAll();
 	}
 
+	@Override
+	public List<ScoreVO> showfindByNum(String sc_stnum) {
+		return scoreDao.findByNum(sc_stnum);
+	}
+
 }

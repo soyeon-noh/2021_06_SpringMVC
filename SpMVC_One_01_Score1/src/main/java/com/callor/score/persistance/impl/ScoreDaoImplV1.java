@@ -44,7 +44,8 @@ public class ScoreDaoImplV1 implements ScoreDao{
 		return score;
 	}
 	
-	public List<ScoreVO> findByNum(Long sc_stnum) {
+	@Override
+	public List<ScoreVO> findByNum(String sc_stnum) {
 		String sql = " SELECT * FROM tbl_score ";
 		sql += " WHERE sc_stnum = ? ";
 		

@@ -1,6 +1,8 @@
 package com.callor.score.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -40,6 +42,24 @@ public class StudentServiceImplV1 implements StudentService{
 		return stList;
 		
 		//return stDao.selectAll(); 이렇게 한줄만써도됨
+	}
+
+	@Override
+	public Map<String, Object> selectMaps() {
+		
+		List<StudentVO> stList = stDao.selectAll();
+		List<ScoreVO> scList = scDao.selectAll();
+		List<SubjectVO> sbList = sbDao.selectAll();
+		List<ScoreDTO> scViewList = scDao.selectViewAll();
+		
+		Map<String, Object> maps = new HashMap<String, Object>();
+		
+		maps.put("학생", stList);
+		maps.put("점수", scList);
+		maps.put("학생", sbList);
+		maps.put("View", scViewList);
+		
+		return maps;
 	}
 
 }

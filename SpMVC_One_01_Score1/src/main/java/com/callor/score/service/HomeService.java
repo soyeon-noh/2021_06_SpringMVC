@@ -7,6 +7,5 @@ import com.callor.score.model.HomeDTO;
 public interface HomeService {
 
 	public List<HomeDTO> showList();
-	public List<HomeDTO> infoList(String num);
 	public HomeDTO findById(String num);
 }

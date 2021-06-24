@@ -23,11 +23,7 @@ public class HomeServiceImplV1 implements HomeService{
 	public List<HomeDTO> showList() {
 		return homeDao.selectAll();
 	}
-	
-	@Override
-	public List<HomeDTO> infoList(String num) {
-		return homeDao.findByNum(num);
-	}
+
 
 	@Override
 	public HomeDTO findById(String num) {

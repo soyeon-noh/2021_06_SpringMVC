@@ -26,11 +26,11 @@ public class InfoController {
 	@RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
 	public String info(String num, Locale locale, Model model) {
 		
-		List<HomeDTO> infoList = homeService.infoList(num);
-		log.debug("infoList 가져오기: {}", infoList);
-		model.addAttribute("SCLIST", infoList);
+		HomeDTO info = homeService.findById(num);
+		log.debug("infoList 가져오기: {}", info);
+		model.addAttribute("IF", info);
 		
-		HomeDTO total = homeService.findById(num);
+		List<ScoreVO> scList = scoreService.findBy(num);
 		
 		return "info/home";
 	}

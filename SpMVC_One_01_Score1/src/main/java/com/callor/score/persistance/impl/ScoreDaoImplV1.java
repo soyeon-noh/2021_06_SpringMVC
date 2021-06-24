@@ -43,6 +43,17 @@ public class ScoreDaoImplV1 implements ScoreDao{
 			= (ScoreVO) jdbcTemplate.query(sql, new Object[] {sc_seq}, scoreMapper);
 		return score;
 	}
+	
+	public List<ScoreVO> findByNum(Long sc_stnum) {
+		String sql = " SELECT * FROM tbl_score ";
+		sql += " WHERE sc_stnum = ? ";
+		
+		RowMapper<ScoreVO> scoreMapper
+			= new BeanPropertyRowMapper<ScoreVO>(ScoreVO.class);
+		List<ScoreVO> score 
+			= jdbcTemplate.query(sql, new Object[] {sc_stnum}, scoreMapper);
+		return score;
+	}
 
 	@Override
 	public int insert(ScoreVO vo) {

@@ -59,7 +59,7 @@ public class InfoController {
 	}
 	
 	
-	@RequestMapping(value = "/insert", method = RequestMethod.GET)
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String student(StudentVO stVO, Locale locale, Model model) {
 		
 		//여기작성해야함
@@ -68,7 +68,7 @@ public class InfoController {
 		return "/info/update";
 	}
 	
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(StudentVO stVO, Locale locale, Model model) {
 		
 		int student = stService.studentUpdate(stVO);

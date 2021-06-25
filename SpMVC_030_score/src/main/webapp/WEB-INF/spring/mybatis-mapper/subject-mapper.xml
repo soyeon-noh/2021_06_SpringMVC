@@ -8,7 +8,7 @@
 		SELECT * FROM tbl_subject
 	</select>
 	<select id="findById" resultType="SubjectVO">
-		SELECT * FROM tlb_subject WHERE sb_code = #{sb_code}
+		SELECT * FROM tbl_subject WHERE sb_code = #{sb_code}
 	</select>
 	<insert id="insert" parameterType="SubjectVO">
 		INSERT INTO tbl_subject(

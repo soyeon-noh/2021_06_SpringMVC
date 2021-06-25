@@ -32,7 +32,7 @@
 			border-bottom: 1px solid #999;
 		}
 	
-		button.studnet.update {
+		button.student.update {
 			flex: 0.2;
 			display: inline-block;
 			margin: 25px 0 25px 25px;
@@ -90,17 +90,17 @@
 				<td>${IF.h_grade}</td>
 			</tr>
 		</table>	
-		<button class="studnet update">학생정보 수정</button>
+		<button type="button" class="student update">학생정보 수정</button>
 		</div>
 		
 		<form class = "score_input" id="score_input" method="POST">
 			<fieldset>
 				<div class="title">
-					<lavel>성적추가</lavel>
+					<label>성적추가</label>
 				</div>
 				<div>
-					<lavel>학번</lavel>
-					<input name="sc_stnum" id="sc_stnum" value="${IF.h_num}"/>
+					<input name="sc_stnum" id="sc_stnum" value="${IF.h_num}"
+					type="hidden"/>
 				</div>
 				<div>
 					<label>과목명</label>
@@ -140,6 +140,10 @@
 	</div>
 </body>
 <script>
+	document.querySelector("button.student.update").addEventListener("click", (e)=>{
+		location.href = "${rootPath}/info/update"
+	})
+
 	document.querySelector("button.score.insert").addEventListener("click", (e)=>{
 		
 		let sc_stnum = document.querySelector("input#sc_stnum")

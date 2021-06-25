@@ -4,6 +4,7 @@
 <c:set var = "rootPath" value="${pageContext.request.contextPath}"/>
 
 <style>
+/*
 	button.student.insert {
 		background-color: blue;
 		color: white;
@@ -13,9 +14,10 @@
 		background-color: green;
 		color: white;
 	}
+*/
 </style>
 <h2>학생정보 리스트</h2>
-<table>
+<table class="student_list detail">
 	<tr>
 		<th>학번</th>
 		<th>이름</th>
@@ -33,7 +35,7 @@
 		</c:when>
 		<c:otherwise>
 			<c:forEach items="${STUDENTS}" var="ST">
-				<tr data-stnum="$ST.st_num}">
+				<tr data-stnum="${ST.st_num}">
 					<td>${ST.st_num}</td>
 					<td>${ST.st_name}</td>
 					<td>${ST.st_dept}</td>
@@ -49,3 +51,25 @@
 	<button class="student insert">학생정보등록</button>
 	<button class="student home">처음으로</button>
 </div>
+
+
+<script>
+/* home.jsp 로 옮김
+document.querySelector("table.student_list")
+	.addEventListener("click",(e)=>{
+	
+	let target = e.target
+	let tagName = target.tagName
+	
+	if(tagName === "TD") {
+		let tr = target.closest("TR")
+		let stNum = tr.dataset.stnum
+		
+		location.href 
+		= "${rootPath}/student/detail?st_num=" + stNum
+	}
+	
+})
+*/
+</script>
+

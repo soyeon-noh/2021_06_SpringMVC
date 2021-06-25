@@ -12,7 +12,7 @@
 	<!-- LIMIT 는 데이터를 몇개까지만 가져오라는 명령으로
 	MySQL에만 있는 명령어 -->
 	<select id="findById" resultType="StudentVO">
-		SELECT * FROM tlb_student WHERE st_num = #{st_num}
+		SELECT * FROM tbl_student WHERE st_num = #{st_num}
 	</select>
 	<!-- 
 	mapper의 각 기능의 id값은 Dao에 설정된 method 이름으로 설정.

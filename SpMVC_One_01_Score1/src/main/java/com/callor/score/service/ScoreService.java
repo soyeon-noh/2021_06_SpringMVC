@@ -8,5 +8,6 @@ public interface ScoreService {
 
 	public List<ScoreVO> showList();
 	public List<ScoreVO> showfindByNum(String sc_stnum);
+	public int insertScore(ScoreVO vo);
 	
 }

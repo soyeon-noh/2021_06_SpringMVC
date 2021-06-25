@@ -24,5 +24,16 @@ public class StudentServiceImplV1 implements StudentService{
 	public List<StudentVO> showList() {
 		return studentDao.selectAll();
 	}
+	
+	public StudentVO findById(String st_num) {
+		return studentDao.findById(st_num);
+	}
+	
+	
+	@Override	
+	public int studentUpdate(StudentVO vo) {
+		studentDao.update(vo);
+		return 0;
+	}
 
 }

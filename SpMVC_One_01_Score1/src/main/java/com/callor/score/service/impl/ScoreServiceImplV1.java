@@ -28,5 +28,10 @@ public class ScoreServiceImplV1 implements ScoreService{
 	public List<ScoreVO> showfindByNum(String sc_stnum) {
 		return scoreDao.findByNum(sc_stnum);
 	}
+	
+	@Override
+	public int insertScore(ScoreVO vo){
+		return scoreDao.insert(vo);
+	}
 
 }

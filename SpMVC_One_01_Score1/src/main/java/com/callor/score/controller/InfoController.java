@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.callor.score.model.HomeDTO;
 import com.callor.score.model.ScoreVO;
+import com.callor.score.model.StudentVO;
 import com.callor.score.service.HomeService;
 import com.callor.score.service.ScoreService;
+import com.callor.score.service.StudentService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,11 +24,14 @@ public class InfoController {
 
 	protected final HomeService homeService;
 	protected final ScoreService scService;
+	protected final StudentService stService;
 	
 	public InfoController(HomeService homeService,
-						ScoreService scService) {
+						ScoreService scService,
+						StudentService stService) {
 		this.homeService = homeService;
 		this.scService = scService;
+		this.stService = stService;
 	}
 	@RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
 	public String info(String num, Locale locale, Model model) {
@@ -45,9 +50,32 @@ public class InfoController {
 	@RequestMapping(value = {"/", ""}, method = RequestMethod.POST)
 	public String insert(ScoreVO scoreVO, Locale locale, Model model) {
 		
-		ScoreVO score = sc
+		int score = scService.insertScore(scoreVO);
+		log.debug("점수 insert: {}", scoreVO);
+		
+		String num = scoreVO.getSc_stnum();
+		
+		return "redirect:/info?num=" + num;
+	}
+	
+	
+	@RequestMapping(value = "/insert", method = RequestMethod.GET)
+	public String student(StudentVO stVO, Locale locale, Model model) {
+		
+		//여기작성해야함
 		
 		
-		return "info/home";
+		return "/info/update";
+	}
+	
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public String update(StudentVO stVO, Locale locale, Model model) {
+		
+		int student = stService.studentUpdate(stVO);
+		log.debug("학생 update: {}", student);
+		
+		String num = stVO.getSt_num();
+		
+		return "redirect:/info?num=" + num;
 	}
 }

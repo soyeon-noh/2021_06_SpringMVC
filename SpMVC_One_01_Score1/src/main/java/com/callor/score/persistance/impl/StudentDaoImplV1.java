@@ -52,7 +52,7 @@ public class StudentDaoImplV1 implements StudentDao {
 		sql += " st_name, ";
 		sql += " st_dept, ";
 		sql += " st_grade, ";
-		sql += " st_tel, ";
+		sql += " st_tel, "; 
 		sql += " st_addr ) ";
 		sql += " VALUES( ?, ?, ?, ?, ?, ?) ";
 		
@@ -70,8 +70,26 @@ public class StudentDaoImplV1 implements StudentDao {
 
 	@Override
 	public int update(StudentVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = " UPDATE tbl_student SET ";
+		sql += " st_name = ?, ";
+		sql += " st_dept = ?, ";
+		sql += " st_grade = ?, ";
+		sql += " st_tel = ?, ";
+		sql += " st_addr = ? ";
+		sql += " WHERE st_num = ? ";
+		
+
+		Object[] params = new Object[] {
+				vo.getSt_name(),
+				vo.getSt_dept(),
+				vo.getSt_grade(),
+				vo.getSt_tel(),
+				vo.getSt_addr(),
+				vo.getSt_num()
+		};
+		
+		
+		return jdbcTemplate.update(sql, params); // 0을 넘어야 정상
 	}
 
 	@Override

@@ -26,6 +26,11 @@
 			flex:1;
 
 		}
+		
+		table.list.student tr {
+			border-top: 1px solid #999;
+			border-bottom: 1px solid #999;
+		}
 	
 		button.studnet.update {
 			flex: 0.2;
@@ -51,7 +56,8 @@
 		}
 		
 		fieldset div.title {
-			margin-right: auto; 
+			margin-right: auto;
+			font-weight: bold; 
 		}
 		
 		form label, form input {
@@ -87,7 +93,7 @@
 		<button class="studnet update">학생정보 수정</button>
 		</div>
 		
-		<form class = "score_input" id="score_input">
+		<form class = "score_input" id="score_input" method="POST">
 			<fieldset>
 				<div class="title">
 					<lavel>성적추가</lavel>
@@ -159,6 +165,7 @@
 		}
 		
 		document.querySelector("form#score_input").submit();
+		
 	})
 </script>
 </html>

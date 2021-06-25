@@ -60,10 +60,9 @@ SELECT * FROM tbl_student;
 SELECT * FROM tbl_score;
 
 DELETE FROM tbl_score
-WHERE sc_stnum = '20210001';
+WHERE sc_seq = '7';
 
-DROP TABLE tbl_student;
-DROP TABLE tbl_score;
+
 
 CREATE VIEW view_HOME AS
 (
@@ -80,6 +79,8 @@ CREATE VIEW view_HOME AS
 	GROUP BY st_num
 );
 
-DROP VIEW view_HOME;
+SELECT * FROM view_HOME;
 
 SELECT * FROM tbl_student;
+
+

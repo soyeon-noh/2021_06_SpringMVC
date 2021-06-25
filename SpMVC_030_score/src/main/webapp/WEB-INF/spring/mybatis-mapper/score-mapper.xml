@@ -27,6 +27,19 @@
 				
 	</select>
 	
+	<select id="selectSubjectAndScore" resultType="SubjectAndScoreDTO">
+		SELECT 
+				SB.sb_code AS ss_code, 
+				SB.sb_name AS ss_stname, 
+				SB.sb_prof AS ss_prof,
+				SC.sc_stnum AS ss_stnum, 
+				SC.sc_score AS ss_score
+		FROM tbl_subject SB
+			LEFT JOIN tbl_score SC
+				ON SC.sc_sbcode = SB.sb_code
+		        AND SC.sc_stnum = #{st_num}
+	</select>
+	
 	<insert id="insert" parameterType="ScoreVO">
 		INSERT INTO tbl_score(
 				sc_stnum, sc_sbcode, sc_score 

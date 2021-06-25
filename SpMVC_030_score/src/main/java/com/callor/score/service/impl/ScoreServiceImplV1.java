@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.callor.score.dao.ext.ScoreDao;
 import com.callor.score.model.ScoreDTO;
+import com.callor.score.model.SubjectAndScoreDTO;
 import com.callor.score.service.ScoreService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,14 @@ public class ScoreServiceImplV1 implements ScoreService{
 		log.debug("Score selectViewAll {}", scList);
 		
 		return scList;
+	}
+
+	@Override
+	public List<SubjectAndScoreDTO> selectScore(String st_num) {
+		
+		List<SubjectAndScoreDTO> ssList = scDao.selectSubjectAndScore(st_num);
+
+		return ssList;
 	}
 
 }

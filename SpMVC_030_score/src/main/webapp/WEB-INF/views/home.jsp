@@ -39,6 +39,45 @@ header {
 	/*height: 30vh;가 없다면 2rem으로 표시했을 때 중앙으로 정렬되게 할 수 있음*/
 }
 
+nav {
+	background-color: black;
+	color: white;
+	width: 100wv;
+	transition : 1s;
+}
+
+nav.fixed {
+ 	position: fixed;
+ 	top: 0;
+ 	left: 0;
+ 	right: 10px;
+ 	border-bottom-right-radius: 20px;
+ 	box-shadow: 3px 3px 3xp rgb(0,0,0,5);
+ }
+
+nav ul {
+	list-style: none;
+	display: flex;
+	margin: 0 20px;	
+}
+
+nav li {
+	padding: 16px 12px;
+	border-bottom: 3px solid transparent;
+	transition: 0.5s;
+	cursor: pointer;
+}
+
+nav li:hover {
+	border-bottom: 3px solid yellow;
+}
+
+nav li:nth-of-type(2){
+	margin-left: auto;
+}
+
+
+
 section#main_sec {
 	flex: 1;
 	width: 100wv;
@@ -48,6 +87,15 @@ section#main_sec {
 	background: linear-gradient(to bottom, purple, yellow);
 	background-size: 100% 100%;
 	background-attachment: fixed;
+	
+	
+	/* overflow: auto;
+		
+		header와 nav를 화면에 고정하고
+		data가 보이는 부분만 scroll 하기 위하여
+		section#main_sec에 overflow 속성 부여하기
+		
+	*/
 }
 
 h2{
@@ -218,6 +266,14 @@ form input:hover {
 		<h1>대한고교 성적처리</h1>
 		<p>대한고교 성적처리 시스템 2021</p>
 	</header>
+	<nav id="main_nav">
+		<ul>
+			<li>HOME</li>
+			<li>로그인</li>
+			<li>로그아웃</li>
+			<li>관리자</li>
+		</ul>
+	</nav>
 	<section id="main_sec">
 		<!-- 각 Controller의 method마다 BODY key에 문자열넣고
 	그에따라서 원하는 화면을 home에서 include로 다 보여주어
@@ -293,6 +349,41 @@ if(table){ // table이 null이 아니면
 		}	
 	})
 }
+
+let main_nav = document.querySelector("nav#main_nav")
+let main_header = document.querySelector("header")
+
+// header box의 높이가 얼마나
+let main_header_height = main_header.offsetHeight;
+
+document.addEventListener("scroll",()=>{  // 도큐멘트 자체가 스크롤이 되면
+	
+	// HTML 문서 전체의 크기,. 좌표등을 추출하기+
+	let doc_bound = document.querySelector("HTML")
+						.getBoundingClientRect(); 
+	
+	let doc_top = doc_bound.top //top의 위치
+	
+	// 화면이 아래로 스크롤되어서 header가 완전히 감춰진 순간
+	/*
+	화면이 아래방향으로 스크롤될때
+	화면 문서의 top 좌표를 추출하여
+	
+	header box의 높이와 비교
+	header box의 높이에 -1을 곱하고 그 값보다 작아지면
+	=== header box가 화면에서 사라지면
+	nav에 fixed 라는 class를 부착하고 (네비게이션 박스만 위에 고정시키고)
+	
+	=== header box가 화면에서 나타나면
+	nav에서 fiexd class를 제거하여 원래 모습을 보이기
+	*/
+	if(doc_top < main_header_height * -1){
+		main_nav.classList.add("fixed") // fixed 클래스를 하나 만들어두고 적용시켰다가
+	} else {
+		main_nav.classList.remove("fixed") // 없앴다가 하기
+	}
+})
+
 </script>
 
 </html>

@@ -33,7 +33,7 @@ public class HomeController {
 		Map<String, Object> maps = stService.selectMaps(); 
 		log.debug("Controller {}", stList.toString()); // String으로 변환해서 넣어줘야했는데 그럴필요없어졌대
 //		return maps;
-		return "redirect:/score";
+		return "redirect:/student";
 	}
 	
 	//뭐든 return에 넣으면... 데이타를 보여준대 (jackson-databind)

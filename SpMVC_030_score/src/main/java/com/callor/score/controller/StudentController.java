@@ -85,7 +85,7 @@ public class StudentController {
 //			@RequestParam(name="subject") List<String> subject,
 //			@RequestParam(name="score") List<String> score) {
 	
-	public String detail(ScoreInputVO scInputVO) {
+	public String detail(ScoreInputVO scInputVO, Model model) {
 		
 //		log.debug("Subject: {} ", subject.toString());
 //		log.debug("Score: {} ", score.toString());
@@ -96,7 +96,19 @@ public class StudentController {
 		// 너무 어이없다..
 		
 		String ret = stService.scoreInput(scInputVO);
+		String st_num = scInputVO.getSt_num();
+		model.addAttribute("st_num", st_num); 
+		// 모델에 임의의 변수하나를 생성하면 st_num=20210102처럼 변수가따라간다
 		
-		return "home";
+		/* 
+		 * redirect를 수행할 때 query string 을 보내고 싶으면
+		 * 해당 변수와 값을 model에 속성(Attribute)로 추가(add)
+		 * 
+		 * redirect:/studetn/detail?st_num=" + st_num과 같이 사용하지 않아도 된다.
+		 * 
+		 */
+		
+		return "redirect:/student/detail";
+		// return "redirect:/student/detail?st_num" + st_num 으로 할 필요없다!
 	}
 }

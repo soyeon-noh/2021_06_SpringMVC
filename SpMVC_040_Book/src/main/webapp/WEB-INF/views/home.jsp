@@ -1,46 +1,126 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var = "rootPath" value="${pageContext.request.contextPath}"/>
+<c:set var="rootPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>나의 홈페이지</title>
+<style>
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+p b {
+	color: blue;
+}
+
+nav#main_nav {
+	background-color: rgba(0, 255, 0, 0.7);
+	display: flex;
+	justify-content: center; /*아이템가운데*/
+	align-items: center; /*아이템가운데*/
+
+}
+
+nav#main_nav form {
+	margin: 0.6rem;
+	width: 50%;
+
+}
+
+nav#main_nav input {
+	padding: 8px;
+	border: 0;
+	outline: 0;
+	width: 100%; /* 여기 100% */
+	border-radius: 10px;
+}
+
+
+section.content_box {
+	border: 1px solid green;
+	padding: 12px 16px;
+	display: flex;
+	flex-wrap: wrap; /*이거안하면 병풍됨... 하면 줄바꿈이 된다! */
+	
+}
+
+section.content_box div.content {
+	border: 1px solid blue;
+	margin: 5px auto;
+	display: flex;
+	width: 30%;
+	height: 30vh;
+	overflow: auto; /* 스크롤바 커마해보래 */
+}
+
+section.content_box div.content img {
+	flex: 1;
+	width: 30%;
+	height: 50%;
+}
+
+section.content_box div.content div {
+	flex: 2;
+	margin: 5px;
+}
+
+@media (min-width:1200px) {
+	section.content_box div.content{
+		width: 20%;
+		margin: 5px;
+	}
+}
+
+@media (max-width:700px) {
+	section.content_box div.content{
+		width: 95%;
+	}
+}
+
+
+a{
+	text-decoration: none;
+}
+
+a:hover {
+	color: green;
+}
+
+</style>
 </head>
 <body>
-	<h1>내 도서관</h1>
-	<input name="search">
-	<input name="st_name">
-	<button name="st_name">전송</button>
-	
-	<script>
-	document.querySelector("button").addEventListener("click",()=>{
-		
-		let search = document.querySelector("input[name='search']").value
-		let st_name = document.querySelector("input[name='st_name']").value
-		
-		// 서버로 fetch(ajax)로 전송하기
-		// 1. JSON 데이터로 만들기 
-		//		변수이름 실제담긴변수이름 // 두가지가 같을경우 하나만 써도됨
-		let json = { search : search, st_name }
-		// 2. JSON type의 데이터를 ajax 로 전송하기 위한 문자열화
-		// 		Serialize 라고 한다.
-		let jsonString = JSON.stringify(json)
-		
-		alert(jsonString)
-		
-		// 3. fetch method를 이용하여 서버로 POST 방식으로 전송하기
-		fetch("${rootPath}/api", {
-			method: "POST", //method를 post로 보내겠다.
-			body: jsonString, // post는 body에 담겨져 가므로 body에 json을 담아보내겠다.
-						// 근데 그냥보내면 Nod.js는 받는데 Spring은 못받는대... 
-						// 그래서 위처럼 문자열화 해야함.
-			headers : { // 내가 보내는게 json이라는 걸 알리기
-				"content-Type" : "application/json" // T자 대문자인거 틀리면 안됨 
-			}
-		})
-	})
-	</script>
+	<nav id="main_nav">
+		<form>
+			<input name="search" placeholder="도서명을 입력후 Enter..."> 
+			<!-- form에 input 박스가 하나일땐 그냥 엔터누르면 전송됨 -->
+		</form>	
+	</nav>
+	<section class="content_box">
+		<c:forEach items="${BOOKS}" var="BOOK">
+		<div class="content">
+			<img src="${BOOK.image}">
+			<div>
+				<p class="title">
+					<a href="${BOOK.link}" target="_NEW"> <!-- target 새로운창열기 NEW -->
+						${BOOK.title}
+					</a>
+				</p>
+				<p class="desc">${BOOK.description}</p>
+				<p class="author">
+					<strong>저자 : </strong>${BOOK.author}
+				</p>
+				<p class="publisher">
+					<strong>출판사 : </strong>${BOOK.publisher}
+				</p>
+				<button class="insert">내 서재등록</button>
+			</div>
+		</div>
+		</c:forEach>
+	</section>
 </body>
 </html>

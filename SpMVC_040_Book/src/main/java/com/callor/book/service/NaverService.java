@@ -1,6 +1,9 @@
 package com.callor.book.service;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.json.simple.parser.ParseException;
 
 /*
  * Naver의 OpenAPI를 통하여 데이터를 검색하는 서비스
@@ -28,12 +31,12 @@ public interface NaverService<T> {
 	
 	// queryURL을 Naver에 보내고
 	// Naver가 보낸 데이터를 JSON 형태의 문자열로 만들어 return
-	public String getJsonString(String queryURL);
+	public String getJsonString(String queryURL) throws IOException;
 	
 	// JSON 형태의 문자열을 받아서
 	// VO를 담은 List type으로 return
 	// JSON 문자열을 parsing하여 객체(리스트) type으로 변환
-	public List<T> getNaverList(String jsonString);
+	public List<T> getNaverList(String jsonString) throws ParseException;
 	
 	
 

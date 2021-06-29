@@ -1,52 +1,40 @@
 package com.callor.book.service;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import java.util.List;
 
-import org.springframework.stereotype.Service;
+/*
+ * Naver의 OpenAPI를 통하여 데이터를 검색하는 서비스
+ * 도서정보, 뉴스정보, 영화정보를 가져올텐데
+ * Naver에서 제공하는 데이터가 조금씩 차이가 난다.
+ * 
+ * OpenAPI를 통해서 데이터를 가져올때
+ * 받을 데이터에 대한 VO(DTO)를 생성해야 한다.
+ * 
+ * Naver에 받을 데이터에 대한 VO를 만들어야 하는데
+ * 각각 도서, 뉴스, 영화 데이터가 조금씩 달라서 
+ * 세 개의 VO를 생성해야 한다.
+ * 각각 VO별로 서비스를 생성하기 위하여
+ * 미리 인터페이스를 만드는데 
+ * VO구조가 달라 다소 어려움이 있을 것으로 예상된다.
+ * 
+ * 때문에 인터페이스에 Generic을 선언하여
+ * VO별로 필요에 따라 클래스를 만들 수 있도록 한다.
+ * 
+ */
+public interface NaverService<T> {
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
-@Service
-public class NaverService {
-
-	/*
-	 * naver에 요청하기
-	 * BookURL + "?query=" + 검색문자열
-	 */
+	// 검색문자열을 받아서 검색을 위한 URL을 생성하여 return
+	public String queryURL(String search_text);
 	
-	protected final String BookURL 
-		= "https://openapi.naver.com/v1/search/book.json";
-	protected final String NewsURL 
-		= "https://openapi.naver.com/v1/search/news.json";
-	protected final String MovieURL
-	= "https://openapi.naver.com/v1/search/movie.json";
+	// queryURL을 Naver에 보내고
+	// Naver가 보낸 데이터를 JSON 형태의 문자열로 만들어 return
+	public String getJsonString(String queryURL);
+	
+	// JSON 형태의 문자열을 받아서
+	// VO를 담은 List type으로 return
+	// JSON 문자열을 parsing하여 객체(리스트) type으로 변환
+	public List<T> getNaverList(String jsonString);
 	
 	
-	public String queryURL(String search) {
-		
-		String searchUTF8 = null; // try문이 끝난다음에도 쓸 수 있도록 밖으로 뺌
-		
-		// 검색하고자 하는 문자열을 UTF-8로 인코딩
-		try {
-			searchUTF8 = URLEncoder.encode(search, "UTF-8");
-			// 옛날과 달리 이제 인코딩 타입을 명시해야함 ("UTF-8")
-		} catch (UnsupportedEncodingException e) {
-			// TODO UTF-8로 바꿀 수가 없다! 라는 Exception
-			e.printStackTrace();
-		} 
-					
-		StringBuilder queryURL = new StringBuilder();
-		queryURL.append(BookURL); // queryString += BookURL 과 같다..
-		
-		String queryString = String.format("?query=%s", searchUTF8); // query = 검색문자열
-		queryURL.append(queryString);
-		
-		queryString = String.format("&display=%d", 20);
-		queryURL.append(queryString);
-		
-		
-		return queryURL.toString();
-	}
+
 }

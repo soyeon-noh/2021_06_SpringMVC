@@ -124,10 +124,22 @@ a:hover {
 </head>
 <body>
 	<nav id="main_nav">
+		<c:if test="${CAT == 'BOOK'}">
+			<c:set var="pHolder" value="도서 검색어"/>
+		</c:if>
+		<c:if test="${CAT == 'MOVIE'}">
+			<c:set var="pHolder" value="영화 검색어"/>
+		</c:if>
+		<c:if test="${CAT == 'NEWS'}">
+			<c:set var="pHolder" value="뉴스 검색어"/>
+		</c:if>
 		<select name="category">
-			<option value="BOOK">도서검색</option>
-			<option value="MOVIE">영화검색</option>
-			<option value="NEWS">뉴스검색</option>
+			<option value="BOOK" 
+				<c:if test="${CAT == 'BOOK'}">selected="selected"</c:if>>도서검색</option>
+			<option value="MOVIE" 
+				<c:if test="${CAT == 'MOVIE'}">selected="selected"</c:if>>영화검색</option> <!-- select 박스의 option항목에 쓸 수 있는 속성 -->
+			<option value="NEWS" 
+				<c:if test="${CAT == 'NEWS'}">selected="selected"</c:if>>뉴스검색</option>
 		</select>
 		<form>
 			<input name="search" placeholder="${pHolder}를 입력후 Enter..."> 
@@ -145,8 +157,8 @@ let category = document.querySelector("select[name='category']")
 category.addEventListener("change", (e)=>{
 		let value = category.value
 		//alert(value)
-		
-		location.href = "${rootPath}/?category=" + value;
+		//location.href = "${rootPath}/?category=" + value;
+		location.href = "${rootPath}/naver/" + value;
 	})
 </script>
 </html>

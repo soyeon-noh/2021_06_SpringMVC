@@ -1,4 +1,4 @@
-package com.callor.book.service.impl;
+package com.callor.book.service.impl.books;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,21 +18,17 @@ import org.springframework.stereotype.Service;
 
 import com.callor.book.config.NaverSecret;
 import com.callor.book.model.BookDTO;
-import com.callor.book.service.NaverService;
+import com.callor.book.service.NaverBookService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Service("naverServiceV1") // 붙여주지않으면 V2와 함께 NoUniqueBeanDefinitionException 발생
-public class NaverServiceImplV1 implements NaverService<BookDTO>{
-
+@Service("naverBookServiceV1") // 붙여주지않으면 V2와 함께 NoUniqueBeanDefinitionException 발생
+public class NaverBookServiceImplV1 implements NaverBookService{
 	/*
 	 * naver에 요청하기
 	 * BookURL + "?query=" + 검색문자열
 	 */
-	
-
-	
 	public String queryURL(String search) {
 		
 		String searchUTF8 = null; // try문이 끝난다음에도 쓸 수 있도록 밖으로 뺌
@@ -162,7 +158,7 @@ public class NaverServiceImplV1 implements NaverService<BookDTO>{
 		log.debug("  n n ");
 		log.debug("('^ ') ");
 		
-		// 1. json Parsing 도구 선언
+		// 1. json Parsing 도구 선언 (import는 google이래)
 		JSONParser jParser = new JSONParser();
 		
 			// JsonString을 JSON 객체로 변환

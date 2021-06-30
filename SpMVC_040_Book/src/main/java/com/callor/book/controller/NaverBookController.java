@@ -15,38 +15,22 @@ import com.callor.book.model.BookDTO;
 import com.callor.book.service.NaverService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
-@Slf4j
+@RequestMapping(value="/book")
 @Controller
-public class HomeController {
-	
+public class NaverBookController {
+
 	@Qualifier("naverServiceV1")
 	protected final NaverService<BookDTO> nBookService;
 	
-	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String home(
-			@RequestParam(name="category", required = false, defaultValue = "") 
-			String category, Model model) {
-		
-		//model.addAttribute("CAT", category);
-		if(category.equalsIgnoreCase("BOOK")) {
-			return "redirect:/book";
-		} else if(category.equalsIgnoreCase("MOVIE")) {
-			return "redirect:/movie";
-		} else if(category.equalsIgnoreCase("NEWS")) {
-			return "redirect:/news";
-		}
-		return "redirect:/book";
-	}
 	
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home1(
-				@RequestParam(name="search", 
-						required = false, 
-						defaultValue = "") String search, Model model) throws IOException, ParseException {
+	@RequestMapping(value= {"/",""}, method=RequestMethod.GET)
+	public String home(@RequestParam(name="search", 
+			required = false, 
+			defaultValue = "") String search, Model model) throws IOException, ParseException {
 		
+		model.addAttribute("pHolder","도서 검색어");
 		if(search != null && !search.equals("")) { // 검색어가 널이아니고 검색어가 비어있지않으면
 			// (null 체크는 혹시모를 exception을 위해서.. 사실 필요없음default값을 ""으로해서 ㅎㅎ
 			
@@ -58,4 +42,6 @@ public class HomeController {
 		}
 		return "home";
 	}
+	
+
 }

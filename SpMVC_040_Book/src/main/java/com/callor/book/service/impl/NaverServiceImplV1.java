@@ -23,7 +23,7 @@ import com.callor.book.service.NaverService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Service
+@Service("naverServiceV1") // 붙여주지않으면 V2와 함께 NoUniqueBeanDefinitionException 발생
 public class NaverServiceImplV1 implements NaverService<BookDTO>{
 
 	/*
@@ -158,6 +158,10 @@ public class NaverServiceImplV1 implements NaverService<BookDTO>{
 	@Override
 	public List<BookDTO> getNaverList(String jsonString) throws ParseException {
 
+		log.debug("나는 ServiceV1 ");
+		log.debug("  n n ");
+		log.debug("('^ ') ");
+		
 		// 1. json Parsing 도구 선언
 		JSONParser jParser = new JSONParser();
 		

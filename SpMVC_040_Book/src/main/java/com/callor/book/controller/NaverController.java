@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,12 +15,16 @@ import com.callor.book.service.NaverService;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @RequestMapping(value="/naver")
 @Controller
 public class NaverController {
 	
+
+	// 이게 번거로워서 HomeController처럼 @RequiredArgsConstructor 를 작성했었다.
 	protected final NaverService<BookDTO> nBookService;
+	public NaverController(@Qualifier("naverServiceV1")NaverService<BookDTO> nBookService) {
+		this.nBookService = nBookService;
+	}
 	
 	@ResponseBody
 	@RequestMapping(value="/book", 

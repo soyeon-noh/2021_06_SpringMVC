@@ -18,14 +18,17 @@
 						${MOVIE.title}
 					</a>
 				</p>
-				<p class="desc">${MOVIE.description}</p>
-				<p class="author">
-					<strong>저자 : </strong>${MOVIE.author}
+				<p class="subtitle">${MOVIE.subtitle}</p>
+				<p class="director">
+					<strong>감독 : </strong>${MOVIE.director}
 				</p>
-				<p class="publisher">
-					<strong>출판사 : </strong>${MOVIE.publisher}
+				<p class="acotr">
+					<strong>출연배우 : </strong>${MOVIE.actor}
 				</p>
-				<button class="insert">내 서재등록</button>
+				<p class="userRating">
+					<strong>평점 : </strong>${MOVIE.userRating}
+				</p>
+				<button class="insert">내 영화등록</button>
 			</div>
 		</div>
 	</c:forEach>

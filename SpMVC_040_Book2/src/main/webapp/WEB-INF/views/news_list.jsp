@@ -11,7 +11,6 @@
 <body>
 	<c:forEach items="${NEWS_LIST}" var="NEWS">
 		<div class="content">
-			<img src="${NEWS.image}">
 			<div>
 				<p class="title">
 					<a href="${NEWS.link}" target="_NEW"> <!-- target 새로운창열기 NEW -->
@@ -19,11 +18,15 @@
 					</a>
 				</p>
 				<p class="desc">${NEWS.description}</p>
-				<p class="author">
-					<strong>저자 : </strong>${NEWS.author}
+				<p class="naver">
+					<a href = "${NEWS.link}" target="_NEW">
+					자세히보기
+					</a>
 				</p>
-				<p class="publisher">
-					<strong>출판사 : </strong>${NEWS.publisher}
+				<p class="origin">
+					<a href = "${NEWS.originallink}" target="_NEW">
+					언론사바로가기
+					</a>
 				</p>
 				<button class="insert">내 서재등록</button>
 			</div>

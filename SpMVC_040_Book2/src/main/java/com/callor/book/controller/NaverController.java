@@ -3,6 +3,7 @@ package com.callor.book.controller;
 import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.callor.book.service.impl.NaverMainServiceImpl;
+import com.callor.book.config.NaverQualifier;
+import com.callor.book.service.impl.NaverMainService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class NaverController {
 	
-	protected final NaverMainServiceImpl nService;
+	@Qualifier(NaverQualifier.NAVER_MAIN_SERVICE_V1)
+	protected final NaverMainService nService;
 	/*
 	 * web client에서 서버로 Request를 할때
 	 * 어떤 데이터를 보내는 방법

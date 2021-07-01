@@ -8,21 +8,26 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.callor.book.config.NaverQualifier;
 import com.callor.book.model.BookDTO;
 import com.callor.book.model.MovieDTO;
-import com.callor.book.service.NaverBookService;
-import com.callor.book.service.NaverMovieService;
+import com.callor.book.model.NewsDTO;
+import com.callor.book.service.NaverAbstractService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
-@Service("naverMainServiceV1")
-public class NaverMainServiceImpl {
+@Service(NaverQualifier.NAVER_MAIN_SERVICE_V1)
+public class NaverMainService {
 
-	@Qualifier("naverBookServiceV2")
-	protected final NaverBookService nBookService;
-	@Qualifier("naverMovieServiceV1")
-	protected final NaverMovieService nMovieService;
+	@Qualifier(NaverQualifier.NAVER_BOOK_SERVICE_V2)
+	protected final NaverAbstractService<BookDTO> nBookService; //변경
+	@Qualifier(NaverQualifier.NAVER_MOVIE_SERVICE_V1)
+	protected final NaverAbstractService<MovieDTO> nMovieService;
+	@Qualifier(NaverQualifier.NAVER_NEWS_SERVICE_V1)
+	protected final NaverAbstractService<NewsDTO> nNewsService;
 	
 	public void naverGetData(String cat, String search, Model model) throws IOException, ParseException {
 		if(search != null && !search.equals("")) { //서치값이 있으면
@@ -35,12 +40,17 @@ public class NaverMainServiceImpl {
 				
 			}else if(cat.equalsIgnoreCase("NEWS")) {
 				// 뉴스 검색 서비스
-
+				String queryURL = nNewsService.queryURL(search);
+				String jsonString = nNewsService.getJsonString(queryURL);
+				log.debug("JsonString : {}", jsonString);
+				List<NewsDTO> newsList = nNewsService.getNaverList(jsonString);
+				model.addAttribute("NEWS_LIST", newsList);
 				
 			}else if(cat.equalsIgnoreCase("MOVIE")) {
 				//영화 검색 서비스
 				String queryURL = nMovieService.queryURL(search);
 				String jsonString = nMovieService.getJsonString(queryURL);
+				log.debug("JsonString : {}", jsonString);
 				List<MovieDTO> movies = nMovieService.getNaverList(jsonString);
 				model.addAttribute("MOVIES", movies);
 			}

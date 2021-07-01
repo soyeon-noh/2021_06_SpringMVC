@@ -3,20 +3,46 @@ package com.callor.book.service;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+
+import org.json.simple.parser.ParseException;
 
 import com.callor.book.config.NaverSecret;
 
 /*
  * abstract 키워드를 추가함으로써 추상클래스가 된다.
+ * 
+ * 추상클래스
+ * 일반적인 클래스와 인터페이스의 성질을 모두 포함하는 클래스
+ * 
+ * 목적 
+ * 1. 상속 되는 부모 클래스의 역할 
+ * 		스스로는 객체로 생성될 수 없다. (인터페이스와 동일)
+ * 2. 추상메서드를 포함하는데 
+ * 		상속받은 곳에서는 반드시 추상메서드를 구현해야 한다. (인터페이스와 동일)
+ * 3. 상속받은 클래스들에 필요한 공통 처리 method는 일반 클래스처럼
+ * 		자체적으로 구현코드를 가지고 있다.
+ * 4. 공통처리 method도 필요에 따라 상속받는 곳에서 재정의 할 수 있다.
+ * 
+ * 5. 인터페이스의 역할을 수행
+ * 		여러 클래스의 원형(prototype)의 역할을 수행하면서
+ * 		상속받은 클래스들에 공통으로 필요한 코드를
+ * 		미리 제공한다.
+ * 
+ * 객체생성하는 방법
+ * 
+ * 추상클래스 객체 = new 상속받은 클래스() 		와 같이 상속받은 클래스를 생성해야한다.
+ * 인터페이스 객체 = new imp클래스() (가능..)
+ * 추상클래스 객체 = new 추상클래스() 는 사용할 수 없다.
+ * 
  */
 public abstract class NaverAbstractService<T> { // 생성은 일반 클래스와 동일. abstract 키워드 추가.
 
-	public abstract String queryURL(String search);
-	public String jsonString(String queryURL) throws IOException {
+	public abstract String queryURL(String search) throws UnsupportedEncodingException;
+	public String getJsonString(String queryURL) throws IOException {
 		
 		URL url = new URL(queryURL);
 		HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
@@ -53,5 +79,5 @@ public abstract class NaverAbstractService<T> { // 생성은 일반 클래스와
 		return sBuffer.toString();
 	
 	}
-	public abstract List<T> getNaverList(String jsonString); 
+	public abstract List<T> getNaverList(String jsonString) throws ParseException; 
 }

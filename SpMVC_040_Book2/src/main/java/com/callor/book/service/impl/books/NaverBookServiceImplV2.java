@@ -5,6 +5,7 @@ import java.util.List;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 
+import com.callor.book.config.NaverQualifier;
 import com.callor.book.model.BookDTO;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement; // 이 Json 이어야한다. 구분잘하기!
@@ -14,27 +15,23 @@ import com.google.gson.reflect.TypeToken;
 import lombok.extern.slf4j.Slf4j;
 
 /*
- * ServiceV1을 상속받은 ServiceV2
- * Service interface와 ServiceV1에 구현된 method 코드를
- * 모두 그대로 상속받는다.
+ * NaverBookServiceImplV1에서는 NaverAbstractService를 상속받았고
+ * NaverBookServiceImplV2에서는 NaverBookServiceImplV1을 상속받았다.
  * 
- * Service의 method 
- * 		queryURL(), getJsonString(), getNaverList() 중에서
- * 		getNaverList() method를 재정의 하려고 한다.
+ * NaverAbstractService nService
+ * 		= new NaverBookServiceImplV2() 처럼 선언 및 생성가능
  * 
- * queryURL(), getJsonString() method는 그대로 상속받아 사용하고
- * getNaverList() 만 다시 작성하겠다.
+ * NaverAbstractService 추상클래스 정의된 jsonString() method를 물려받았고
+ * NaverBookServiceImplV1 클래스에 정의된
+ * 		queryURL(), getNaverList() method를 물려받았다.
  * 
- * ServiceV1의 getNaverList()는 json-simple을 사용하여 
- * JSON parsing을 수행한 후 List를 return 하는 코드. 
- *		-> 파싱하고 vo에 담고.. 리스트에담고... (번거롭고 안드로이드에서쓰는법)
- * 
- * ServiceV2에서는 getNaverList() method를 다시 작성하여
- * gson을 사용하여 JSON parsing을 수행하는 코드로 작성하기
- * 		-> 이걸로 해보겠다!
+ * 따라서 
+ * NaverBookServiceImplV2 클래스에는 
+ * 		queryURL(), jsonString(), getNaverList() method가
+ * 		모두 있는 것과 같다.
  */
 @Slf4j
-@Service("naverBookServiceV2") // 이름을 안붙여주면  NoUniqueBeanDefinitionException 발생
+@Service(NaverQualifier.NAVER_BOOK_SERVICE_V2) // 이름을 안붙여주면  NoUniqueBeanDefinitionException 발생
 public class NaverBookServiceImplV2 extends NaverBookServiceImplV1{@Override
 
 	// gSon을 사용하여 jsonString 을 parsing 하기

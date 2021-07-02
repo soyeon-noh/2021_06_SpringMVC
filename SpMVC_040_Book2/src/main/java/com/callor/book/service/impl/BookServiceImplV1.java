@@ -42,4 +42,9 @@ public class BookServiceImplV1 implements BookService{
 		bookDao.insert(book);
 		return 0;
 	}
+	
+	@Override
+	public List<BookDTO> selectAll(){
+		return bookDao.selectAll();
+	}
 }

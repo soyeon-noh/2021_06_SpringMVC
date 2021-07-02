@@ -23,6 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class NaverController {
 	
+//	protected final BookService myBookService;
+	
 	@Qualifier(NaverQualifier.NAVER_MAIN_SERVICE_V1)
 	protected final NaverMainService nService;
 	/*
@@ -55,6 +57,9 @@ public class NaverController {
 		
 		log.debug("URL {}", cat);
 		model.addAttribute("CAT", cat);
+		
+//		List<BookDTO> myBookList = myBookService.selectAll();
+//		model.addAttribute("MY_BOOKS", myBookList);
 		
 		nService.naverGetData(cat, search, model);
 		return "home";

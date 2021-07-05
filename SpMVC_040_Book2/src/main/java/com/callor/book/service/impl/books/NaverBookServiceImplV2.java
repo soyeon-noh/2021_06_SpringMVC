@@ -2,7 +2,6 @@ package com.callor.book.service.impl.books;
 
 import java.util.List;
 
-import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 
 import com.callor.book.config.NaverQualifier;
@@ -35,7 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 public class NaverBookServiceImplV2 extends NaverBookServiceImplV1{@Override
 
 	// gSon을 사용하여 jsonString 을 parsing 하기
-	public List<BookDTO> getNaverList(String jsonString) throws ParseException {
+	public List<BookDTO> getNaverList(String jsonString) throws Exception {
 	
 		log.debug("나는 ServiceV2 ");
 		log.debug(" n n ");

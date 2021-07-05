@@ -1,10 +1,8 @@
 package com.callor.book.service.impl;
 
-import java.io.IOException;
 import java.net.URLDecoder;
 import java.util.List;
 
-import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +24,7 @@ public class BookServiceImplV1 implements BookService{
 	protected final BookDao bookDao;
 	
 	@Override
-	public int insert(String isbnUTF) throws IOException, ParseException {
+	public int insert(String isbnUTF) throws Exception {
 		
 		String isbn = URLDecoder.decode(isbnUTF, "UTF-8"); // 거꾸로 디코딩하는 것
 		String[] isbns = isbn.split(" ");

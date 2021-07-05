@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+
+	<!-- 
+	file upload 할때 파일을 저장할 폴더
+	이 폴더는 img src="/files/파일" 형식으로 접근하기
+	 -->
+	<mvc:resources mapping="/files/**" 
+				location="/files/, file:///c:/bizworks/files/, file:///Users/gyu250/Documents/workspace/files/" />
+	<!-- 서버폴더, 로컬디스크(운영체제가 알고있는파일. file:///프로토콜로 접근함), 위부터 순서대로 하는건가..? -->
+	<bean id="winPath" class="java.lang.String">
+		<constructor-arg value="/bizworks/files"/>
+	</bean>
+	<!-- 맥쓰는사람은 아래코드를 써야한다. -->
+	<bean id="macPath" class="java.lang.String">
+		<constructor-arg value="/Users/soyeon/Documents/workspace/files/"/>
+		<!--  내 프로젝트 폴더 아래에   Documents까지는 기본폴더
+		workspace는 내 작업폴더 . 그아래에 files를 만든다는 것이므로
+		이것과 똑같이하면안된다. -->
+		<!--  그리고 files은 github가 연동되면안된다 빼고 해야함! -->
+	</bean>
+
+</beans>

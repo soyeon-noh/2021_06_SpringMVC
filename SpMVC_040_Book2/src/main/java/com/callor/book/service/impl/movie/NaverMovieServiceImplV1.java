@@ -2,19 +2,13 @@ package com.callor.book.service.impl.movie;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 
 import com.callor.book.config.NaverQualifier;
 import com.callor.book.config.NaverSecret;
 import com.callor.book.model.MovieDTO;
-import com.callor.book.model.NewsDTO;
 import com.callor.book.service.NaverAbstractService;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -48,7 +42,7 @@ public class NaverMovieServiceImplV1 extends NaverAbstractService<MovieDTO> {
 	 * gSon 을 사용하여 jsonString을 List<MovieDTO>로 변환하기
 	 */
 	@Override
-	public List<MovieDTO> getNaverList(String jsonString) throws ParseException {
+	public List<MovieDTO> getNaverList(String jsonString) throws Exception {
 
 		JsonElement jsonElement
 			= JsonParser.parseString(jsonString); // 구글 gson의 JsonParser!

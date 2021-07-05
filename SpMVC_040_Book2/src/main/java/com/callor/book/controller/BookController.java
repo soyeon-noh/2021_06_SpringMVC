@@ -1,9 +1,7 @@
 package com.callor.book.controller;
 
-import java.io.IOException;
 import java.util.List;
 
-import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +26,7 @@ public class BookController {
 	
 	@RequestMapping(value= "/insert/{isbn}", method=RequestMethod.GET)
 	public String insert(
-			@PathVariable("isbn") String isbn, Model model) throws IOException, ParseException {
+			@PathVariable("isbn") String isbn, Model model) throws Exception {
 
 		log.debug("ISBN : {}", isbn);
 		

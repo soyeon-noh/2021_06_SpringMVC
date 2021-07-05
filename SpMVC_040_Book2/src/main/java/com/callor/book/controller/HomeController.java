@@ -1,9 +1,7 @@
 package com.callor.book.controller;
 
-import java.io.IOException;
 import java.util.List;
 
-import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,7 +50,7 @@ public class HomeController {
 	public String home1(
 				@RequestParam(name="search", 
 						required = false, 
-						defaultValue = "") String search, Model model) throws IOException, ParseException {
+						defaultValue = "") String search, Model model) throws Exception {
 		
 		if(search != null && !search.equals("")) { // 검색어가 널이아니고 검색어가 비어있지않으면
 			// (null 체크는 혹시모를 exception을 위해서.. 사실 필요없음default값을 ""으로해서 ㅎㅎ

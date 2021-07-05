@@ -8,7 +8,6 @@ import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 
 import com.callor.book.config.NaverQualifier;
@@ -80,7 +79,7 @@ public class NaverBookServiceImplV1 extends NaverAbstractService<BookDTO>{
 	 * json-simple을 사용하여 parsing하기
 	 */ 
 	@Override
-	public List<BookDTO> getNaverList(String jsonString) throws ParseException {
+	public List<BookDTO> getNaverList(String jsonString) throws Exception {
 
 		log.debug("나는 ServiceV1 ");
 		log.debug("  n n ");

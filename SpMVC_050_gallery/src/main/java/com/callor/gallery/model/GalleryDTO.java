@@ -19,7 +19,7 @@ public class GalleryDTO {
 	 * Contents를 저장할 table 구조의 DTO를 생성하기
 	 */
 	
-	private Long q_seq; // PK, 자동설정
+	private Long g_seq; // PK, 자동설정
 	private String g_writer; // 작성자
 	private String g_date; // 작성일자
 	private String g_time; // 작성시각

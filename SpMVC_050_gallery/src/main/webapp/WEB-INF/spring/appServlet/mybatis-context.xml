@@ -21,12 +21,12 @@
    <!-- SessionFactory -->
    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
       <property name="dataSource" ref="ds" />
-      <property name="typeAliasesPackage" value="com.callor.gallery.model"/>
-      <property name="mapperLocations" value="/WEB-INF/spring/mapper/*-mapper.xml"/>
+      <property name="typeAliasesPackage" value="com.callor.gallery.model"/> <!-- 모델 쇽 가져오고 -->
+      <property name="mapperLocations" value="/WEB-INF/spring/mapper/*-mapper.xml"/> <!-- mapper에서 슥삭슥삭 -->
    </bean>
    
    
-   <mybatis-spring:scan base-package="com.callor.gallery.persistance.ext" />
+   <mybatis-spring:scan base-package="com.callor.gallery.persistance.ext" /> <!-- Dao도 쇽 가져와서 -->
       
    <!-- SessionTemplate -->
    <!-- id를 적지 않아도 되는도 호환성때문에! -->

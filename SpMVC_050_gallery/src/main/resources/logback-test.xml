@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="3 seconds">
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>[%-5level] - %msg%n</Pattern>
+        </encoder>
+    </appender>
+    
+     <!-- 적용하는 프로젝트의  Base Package를 설정 -->
+    <logger name="com.callor.gallery"> <!-- 여기 경로 변경 -->
+    	<level value="INFO"  additivity="false"/>
+    </logger>
+    <logger name="com.callor.gallery.controller"> <!-- 위에거 복사  -->
+    	<level value="DEBUG"  additivity="false"/> <!-- DEBUG로 변경 -->
+    </logger>
+    <logger name="com.callor.gallery.service"> <!-- 위에거 복사 -->
+    	<level value="DEBUG"  additivity="false"/> <!-- DEBUG로 변경 -->
+    </logger>
+    
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

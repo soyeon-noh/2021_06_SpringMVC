@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.gallery.model.FileDTO;
 import com.callor.gallery.model.GalleryDTO;
+import com.callor.gallery.model.GalleryFilesDTO;
 import com.callor.gallery.persistance.ext.FileDao;
 import com.callor.gallery.persistance.ext.GalleryDao;
 import com.callor.gallery.service.FileService;
@@ -58,13 +59,15 @@ public class GalleryServiceImplV1 implements GalleryService{
 	
 	@Override
 	public int insert(GalleryDTO galleryDTO) throws Exception{
-		// TODO Auto-generated method stub
+		// TODO 모양만만들어놓고 사용하지않을거다
 		return 0;
 	}
 
 	@Override
-	public void insert(GalleryDTO gaDTO, MultipartFile one_file, MultipartHttpServletRequest m_file) throws Exception {
-		// TODO Auto-generated method stub
+	public void insert(GalleryDTO gaDTO,
+						MultipartFile one_file, 
+						MultipartHttpServletRequest m_file) throws Exception {
+		// TODO 우리가 필요한건 이 insert
 		
 		// 대표이미지가 업로드 되면...
 		// 이미지를 서버에 저장하고 
@@ -95,7 +98,9 @@ public class GalleryServiceImplV1 implements GalleryService{
 		// 원래 파일이름과 UUID 가 첨가된 파일이름을 추출하여
 		// FileDTO에 담고
 		// 다시 List에 담아 놓는다.
-		for(MultipartFile file : m_file.getFiles("m_file")) {
+		
+		List<MultipartFile> mFiles = m_file.getFiles("m_file");
+		for(MultipartFile file : mFiles) {
 			
 			String fileOriginName = file.getOriginalFilename();
 			String fileUUName = fService.fileUp(file);
@@ -109,6 +114,8 @@ public class GalleryServiceImplV1 implements GalleryService{
 		}
 		
 		log.debug("이미지들 {}", files.toString());
+		
+		fDao.insertWithList(files);
 	}
 
 	@Override
@@ -118,5 +125,11 @@ public class GalleryServiceImplV1 implements GalleryService{
 		List<GalleryDTO> gaList = gaDao.selectAll();
 		log.debug("갤러리 리스트 {}", gaList.toString());
 		return gaList;
+	}
+
+	@Override
+	public List<GalleryFilesDTO> findByGalleryFiles(Long g_seq) {
+		
+		return gaDao.findByIdGalleryFiles(g_seq);
 	}
 }

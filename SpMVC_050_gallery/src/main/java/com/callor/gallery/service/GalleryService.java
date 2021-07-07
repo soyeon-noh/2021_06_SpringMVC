@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.gallery.model.GalleryDTO;
+import com.callor.gallery.model.GalleryFilesDTO;
 
 public interface GalleryService {
 
@@ -16,6 +17,8 @@ public interface GalleryService {
 			MultipartHttpServletRequest m_file) throws Exception;
 
 	public List<GalleryDTO> selectAll() throws Exception;
+
+	public List<GalleryFilesDTO> findByGalleryFiles(Long g_seq);
 	
 	
 }

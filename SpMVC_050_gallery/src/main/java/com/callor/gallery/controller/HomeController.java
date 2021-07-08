@@ -1,21 +1,21 @@
 	package com.callor.gallery.controller;
 	
 	import java.util.List;
-	import java.util.Locale;
-	
-	import org.springframework.beans.factory.annotation.Qualifier;
-	import org.springframework.stereotype.Controller;
-	import org.springframework.ui.Model;
-	import org.springframework.web.bind.annotation.RequestMapping;
-	import org.springframework.web.bind.annotation.RequestMethod;
-	import org.springframework.web.bind.annotation.RequestParam;
-	import org.springframework.web.multipart.MultipartFile;
-	import org.springframework.web.multipart.MultipartHttpServletRequest;
-	
-	import com.callor.gallery.service.FileService;
-	
-	import lombok.RequiredArgsConstructor;
-	import lombok.extern.slf4j.Slf4j;
+import java.util.Locale;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.callor.gallery.service.FileService;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 	
 	@RequiredArgsConstructor
 	@Slf4j
@@ -25,10 +25,55 @@
 		@Qualifier("fileServiceV2")
 		protected final FileService fileService;
 		
+// -----------------------------------------------------------------------------------------------		
+		// localhost:8080/rootPath/dumy/gallery/detail 요청을 했을때
+		// Request를 처리할 method.
+		// a tag를 클릭했을 때
+		//			<a href=${rootPath}/dumy/gallery/detail>
+		// 주소창에 직접 입력하고 Enter를 눌렀을 때
+		// 			http://localhost:8080/rootPath/dumy/gallery/detail
+		// location.href=${rootPath}/dumy/gallery/detail 로 JS에서 실행했을 때
+		// 
+		@RequestMapping(value = "/dumy/gallery/detail/{id}", // 경로가 겹친다고 실행이안된대 
+				method = RequestMethod.GET) // mehtod 값을 생략하면 GET과 POST 둘다 처리하기떄문에 넣어주자. 
+		public String dumy1() {
+			return "home";
+		}
 		
+		/*
+		 * <form action="${rootPath}/dumy/gallery/detail"
+		 * 			method="POST">
+		 * 		<input name="str">
+		 * 		<button type="submit">전송</button>
+		 * </form>
+		 * 
+		 * JSP, HTML에서 위 코드를 만들고 입력화면을 보여준 후
+		 * 		input box에 어떤 문자열을 입력한 후
+		 *	 	전송 button을 클릭하면
+		 * 이 method가 Request를 수신하고
+		 * 		input box에 입력한 문자열은 str 변수에 담기게 된다.
+		 */
+		
+		
+		@RequestMapping(value = "/dumy/gallery/detail/{id}", 
+				method = RequestMethod.POST) 
+		public String dumy1(String str) {
+			return "home";
+		}
+
+		// localhost:8080/rootPath/dumy/gallery/detail/image 요청을 했을때
+		// Request를 처리할 method
+		@RequestMapping(value = "/dumy/gallery/detail/image/{id}",
+				method=RequestMethod.GET)
+		public String dumy2() {
+			return "home";
+		}
+// ------------------------------------------------------------------------------------------------		
+		
+		
+		// location:8080/rootPath/ 로 요청했을 때
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public String home(Locale locale, Model model) {
-			//return "home";
 			return "redirect:/gallery";
 		}
 		

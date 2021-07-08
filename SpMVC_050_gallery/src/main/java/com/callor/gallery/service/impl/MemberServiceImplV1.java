@@ -1,0 +1,75 @@
+package com.callor.gallery.service.impl;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.callor.gallery.model.MemberVO;
+import com.callor.gallery.persistance.ext.MemberDao;
+import com.callor.gallery.service.MemberService;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@RequiredArgsConstructor
+@Slf4j
+@Service("memberServiceV1")
+public class MemberServiceImplV1 implements MemberService{
+
+	protected final MemberDao memDao;
+	
+	// 속이는 트릭
+	@Autowired
+	public void create_member_table(MemberDao dummy) {
+		Map<String, String> maps = new HashMap<String, String>();
+		memDao.create_tabel(maps);
+	}
+	
+	/*
+	 * 1. 회원가입에서 최초로 가입된 member는 ADMIN이다.
+	 * 		회원테이블에 데이터가 있냐 없냐?
+	 * 		selectAll() method를 사용하여 최초 가입된 member임을 확인
+	 * 2. ADMIN 권한을 갖는 최초의 가입자는 level이 0이다.
+	 * 3. ADMIN 이 아닌 일반 가입자는 기본 level이 9 이다.
+	 * 4. level이 6보다 큰 member는 이미지 보기만 가능하다.
+	 * 5. 이미지 등록을 하려면 level이 6보다 작아야 한다.
+	 * 6. 최초 가입한 member가 가입승인이 되면 level을 6으로 설정한다.
+	 * 7. 이미 가입된 member의 m_userid 정보가 JOIN을 통해서 전달되면
+	 * 		회원 정보를 Update 한다.
+	 */
+	@Override
+	public MemberVO join(MemberVO memberVO) {
+		List<MemberVO> members = memDao.selectAll();
+		log.debug("Members {}", members.toString());
+		
+		// 아직 member table에 데이터가 하나도 없는 상태
+		// 	= 최초로 가입신청한 상태
+		// 최초로 가입되는 member는 ADMIN
+		// ADMIN은 level이 0 이다.
+		if(members == null || members.size() < 1) {
+			memberVO.setM_level(0);
+		} else {
+			memberVO.setM_level(9); // m_level이 VO에 int로 되어있어서.. 기본값이 0으로 지정되어버림. 
+			// 그래서 여기서 default 값을 설정해줘야한다.
+		}
+		
+		memDao.insertOrUpdate(memberVO);
+		return memberVO;
+	}
+
+	@Override
+	public MemberVO update(MemberVO memberVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MemberVO findById(String m_userid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

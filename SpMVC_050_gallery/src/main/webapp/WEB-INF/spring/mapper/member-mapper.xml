@@ -8,7 +8,10 @@
  	<select id="selectAll" resultType="MemberVO">
  		SELECT * FROM tbl_member
  	</select>
- 	<select id="findById" resultType="MemberVO"></select>
+ 	<select id="findById" resultType="MemberVO">
+ 		SELECT * FROM tbl_member
+ 		WHERE m_userid = #{m_userid}
+ 	</select>
  	<insert id="insert" parameterType="MemberVO">
  		INSERT INTO tbl_member (
 			m_userid, m_password, m_nick, m_tel, m_level

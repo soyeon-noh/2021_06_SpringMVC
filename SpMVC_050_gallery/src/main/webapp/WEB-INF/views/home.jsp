@@ -111,15 +111,8 @@ nav.main_nav a:hover {
 </head>
 <body>
 	<h1 class="title">GALLERY SOYEON</h1>
-	<nav id="main_nav">
-		<ul>
-			<li id="home">HOME</li>
-			<li id="image_create">이미지등록</li>
-			<li id="login">로그인</li>
-			<li id="join">회원가입</li>
-			<li id="logout">로그아웃</li>
-		</ul>
-	</nav>
+	
+	<%@ include file="/WEB-INF/views/include/include_nav.jspf" %>
 	
 	<nav class="main_nav">
 		<ul>
@@ -145,8 +138,10 @@ nav.main_nav a:hover {
 			<%@ include file="/WEB-INF/views/gallery/detail.jsp" %>
 		</c:when>
 		<c:when test="${BODY eq 'JOIN'}">
-			<!-- <a href="${rootPath}/gallery">리스트로</a>  -->
 			<%@ include file="/WEB-INF/views/member/join.jsp" %>
+		</c:when>
+		<c:when test="${BODY eq 'LOGIN'}">
+			<%@ include file="/WEB-INF/views/member/login.jsp" %>
 		</c:when>
 		
 		<c:otherwise>

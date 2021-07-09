@@ -4,11 +4,46 @@
 <c:set var = "rootPath" value="${pageContext.request.contextPath}"/>
 
 <style>
+@font-face {
+     font-family: 'DungGeunMo';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
 	div.msg.view {
 		color: yellow;
 		background-color: red;
 		font-size: 20px;
 		padding: 2rem;
+	}
+	
+	form#login_form {
+		width: 400px;
+		margin: 0 auto;
+	}
+	
+	form#login_form label {
+		font-family: 'DungGeunMo';
+		display: inline-block;
+		
+		color: white;
+		font-size: 25px;
+		
+		width: 150px;
+		text-align: left;
+	}
+	
+	form#login_form input {
+		padding: 8px;
+		background-color: #90ffca;
+	}
+	
+	form#login_form div {
+		margin: 20px; 
+	}
+	
+	button#btn_login, button#btn_join {
+		display: none;
 	}
 	
 </style>
@@ -24,8 +59,12 @@
 		<input name="m_password" type="password">
 	</div>
 	<div>
-		<button type="button" class="login">로그인</button>
-		<button type="button" class="join">회원가입</button>
+		<label></label>
+		<label class="button" for="btn_login">login</label>
+		<button type="button" class="login" id="btn_login">로그인</button>
+		<label></label>
+		<label class="button" for="btn_join">join</label>
+		<button type="button" class="join" id="btn_join">회원가입</button>
 	</div>
 </form>
 
@@ -91,6 +130,12 @@ if(login_fail == "NOT_USERID"){
 		//msg_error.style.fontSize = "20px"
 		//msg_error.style.backgroundColor = "red"
 		//msg_error.style.padding = "2rem"
+} else if(login_fail === "LOGIN_REQ"){
+	
+	msg_error.innerHTML = "로그인이 필요한 서비스 입니다.<br/>";
+	msg_error.innerHTML += "로그인을 해주세요.";
+	msg_error.classList.add("view")
+		
 }
 
 

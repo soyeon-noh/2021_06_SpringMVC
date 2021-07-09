@@ -77,9 +77,16 @@ public class GalleryController {
 	}
 	
 	
-	@RequestMapping(value="input", method=RequestMethod.GET)
-	public String input(Model model) {
-
+	@RequestMapping(value="/input", method=RequestMethod.GET)
+	public String input(Model model, HttpSession session) {
+		
+		// login 필요한 서비스마다 GET에 이거 넣어줘야한다. 
+		// (나중엔 통합으로 할건데 일단 지금은!)
+		MemberVO mVO = (MemberVO) session.getAttribute("MEMBER"); 
+		if(mVO == null) {
+			return "redirect:/member/login";
+		}
+		
 		Date date = new Date(System.currentTimeMillis()); //java.util의 date
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat st = new SimpleDateFormat("hh:mm:ss");

@@ -27,6 +27,7 @@
   		<result column="g_writer" property="g_writer"/>
   		<result column="g_date" property="g_date"/>
   		<result column="g_time" property="g_time"/>
+  		<result column="g_subject" property="g_subject"/>
   		<result column="g_content" property="g_content"/>
   		<result column="g_image" property="g_image"/>
   		<collection property="fileList" ofType="FileDTO">

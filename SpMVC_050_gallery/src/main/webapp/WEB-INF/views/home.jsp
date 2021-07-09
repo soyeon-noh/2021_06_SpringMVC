@@ -173,7 +173,7 @@ if(main_nav){
 			if(menu.id === "join"){ // menu의 id가 join이면 
 				location.href = "${rootPath}/member/join" //멤버라는 클래스를 만들고 join이라는 메서드를 만들겠다
 			} else if(menu.id === "login"){
-				location.href = "${rootPath}/member/login"
+				location.href = "${rootPath}/member/login/nav"
 			} else if(menu.id === "logout"){
 				location.href = "${rootPath}/member/logout"
 			} else if(menu.id === "image_create"){

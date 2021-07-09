@@ -69,7 +69,7 @@
 	<div class="ga_box">
 		<div>
 			<c:if test="${empty GALLERY.g_image}">
-				<img src="${rootPath}/files/noimage.png" width="100%">
+				<img src="${rootPath}/files/noimage.png" width="80%">
 			</c:if>
 			<c:if test="${not empty GALLERY.g_image}">
 				<img src="${rootPath}/files/${GALLERY.g_image}" width="500px">

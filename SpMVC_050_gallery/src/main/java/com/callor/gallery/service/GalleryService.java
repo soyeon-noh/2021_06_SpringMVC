@@ -11,14 +11,13 @@ import com.callor.gallery.model.GalleryFilesDTO;
 public interface GalleryService {
 
 	public int insert(GalleryDTO galleryDTO) throws Exception;
-
 	public void insert(GalleryDTO gaDTO, 
 			MultipartFile one_file, 
 			MultipartHttpServletRequest m_file) throws Exception;
 
 	public List<GalleryDTO> selectAll() throws Exception;
-
 	public List<GalleryFilesDTO> findByGalleryFiles(Long g_seq);
 	
-	
+	public GalleryDTO findByIdGellery(Long g_seq);
+	public int delete(Long g_seq);
 }

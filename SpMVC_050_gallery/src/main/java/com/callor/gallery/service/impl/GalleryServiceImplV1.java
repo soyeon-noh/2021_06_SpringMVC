@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service("galleryServiceV1")
 public class GalleryServiceImplV1 implements GalleryService{
 	
+	//뭔가오류가 생겨서 private로 바꿈
 	protected final GalleryDao gaDao;
 	protected final FileDao fDao;
 	
@@ -45,17 +46,17 @@ public class GalleryServiceImplV1 implements GalleryService{
 	 * 프로젝트가 Run함과 동시에 실행되며 Dao에 있는 create를 실행하게 된다.
 	 */
 	
-	@Autowired
-	public void create_table(GalleryDao gDao) { 
-		// 여기 Parameters가 없으면 콘솔에 @Autowired는 parameters가 필요하다고 뜸..
-		// 그래서 아무거나 안에 넣어주는 것이다.
-		
-		Map<String, String> maps = new HashMap<String, String>();
-		
-		//int maps = 0;
-		gaDao.create_tabel(maps);
-		fDao.create_tabel(maps);
-	}
+//	@Autowired
+//	public void create_table(GalleryDao gDao) { 
+//		// 여기 Parameters가 없으면 콘솔에 @Autowired는 parameters가 필요하다고 뜸..
+//		// 그래서 아무거나 안에 넣어주는 것이다.
+//		
+//		Map<String, String> maps = new HashMap<String, String>();
+//		
+//		//int maps = 0;
+//		gaDao.create_tabel(maps);
+//		fDao.create_tabel(maps);
+//	}
 	
 	@Override
 	public int insert(GalleryDTO galleryDTO) throws Exception{
@@ -130,6 +131,30 @@ public class GalleryServiceImplV1 implements GalleryService{
 	@Override
 	public List<GalleryFilesDTO> findByGalleryFiles(Long g_seq) {
 		
-		return gaDao.findByIdGalleryFiles(g_seq);
+		List<GalleryFilesDTO> gfList = gaDao.findByIdGalleryFiles(g_seq);
+		/*
+		 * Dao로부터 select를 한 후에 데이터 검증을 하기 위해 사용하는 코드
+		 * gfList 데이터가 조회되지 않으면 null이 발생할 수 있다.
+		 * 		-> if(gfList != null) 으로 exception 방지
+		 *  	-> gfList.size() > 0 를 추가하면 더 안전한 코드
+		 */
+		if(gfList != null && gfList.size() > 0) {
+			log.debug(gfList.toString());
+		} else {
+			log.debug("조회된 데이터가 없음");
+		}
+		return gfList;
+	}
+
+	@Override
+	public GalleryDTO findByIdGellery(Long g_seq) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int delete(Long g_seq) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

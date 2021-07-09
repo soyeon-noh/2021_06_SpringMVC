@@ -137,6 +137,9 @@ nav.main_nav a:hover {
 			<!-- <a href="${rootPath}/gallery">리스트로</a>  -->
 			<%@ include file="/WEB-INF/views/gallery/detail.jsp" %>
 		</c:when>
+		<c:when test="${BODY eq 'GA-DETAIL-V2'}">
+			<%@ include file="/WEB-INF/views/gallery/detail2.jsp" %>
+		</c:when>
 		<c:when test="${BODY eq 'JOIN'}">
 			<%@ include file="/WEB-INF/views/member/join.jsp" %>
 		</c:when>

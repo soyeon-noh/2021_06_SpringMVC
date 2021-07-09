@@ -68,11 +68,16 @@
 
 	<div class="ga_box">
 		<div>
-			<img src="${rootPath}/files/${GALLERY.g_image}" width="500px">
+			<c:if test="${empty GALLERY.g_image}">
+				<img src="${rootPath}/files/noimage.png" width="100%">
+			</c:if>
+			<c:if test="${not empty GALLERY.g_image}">
+				<img src="${rootPath}/files/${GALLERY.g_image}" width="500px">
+			</c:if>
 		</div>
 		<div>
 			<h3>
-				<a href="${rootPath}/gallery/detail/${GALLERY.g_seq}">
+				<a href="${rootPath}/gallery/detail2/${GALLERY.g_seq}">
 					${GALLERY.g_subject}
 				</a>
 			</h3>

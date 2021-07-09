@@ -4,16 +4,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.gallery.model.GalleryDTO;
 import com.callor.gallery.model.GalleryFilesDTO;
+import com.callor.gallery.model.MemberVO;
 import com.callor.gallery.service.GalleryService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(value="/gallery")
 public class GalleryController {
 	
+	@Qualifier("galleryServiceV2")
 	protected final GalleryService gaService;
 
 // ---------------------------------------------------------------------------------------------
@@ -127,5 +133,56 @@ public class GalleryController {
 		model.addAttribute("BODY", "GA-DETAIL");
 		
 		return "home";
+	}
+	
+	@RequestMapping(value="/detail2/{seq}", method=RequestMethod.GET)
+	public String detail(
+			@PathVariable("seq") String seq, Model model, HttpSession session) {
+		
+		Long g_seq = 0L;
+		try {
+			g_seq = Long.valueOf(seq);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.debug("갤러리 ID 값 오류");
+			return "redirect:/";
+		}
+		
+		GalleryDTO galleryDTO = gaService.findByIdGellery(g_seq);
+		model.addAttribute("GALLERY", galleryDTO);
+		
+		model.addAttribute("BODY", "GA-DETAIL-V2");
+		
+		return "home";
+	}
+	
+	/*
+	 * 첨부파일이 있는 게시물의 삭제
+	 * 
+	 */
+	@RequestMapping(value = "/delete", method=RequestMethod.GET)
+	public String delete(
+			@RequestParam("g_seq") String seq, HttpSession session) {
+		
+		// 삭제를 요구하면
+		// 1. 로그인이 되었나 확인
+		MemberVO memVO = (MemberVO) session.getAttribute("MEMBER"); // Object Type이다보니 add casting 해줘야함
+		if(memVO == null) {
+			return "redirect:/member/login"; // 로그인이 안되어있으면 로그인으로 이동
+		}
+		
+		Long g_seq = 0L;
+		try {
+			g_seq = Long.valueOf(seq);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.debug("갤러리 SEQ 오류");
+			return "redirect:/gallery";
+		}
+		
+		
+		gaService.delete(g_seq);
+		
+		return "redirect:/gallery"; // 로그인이 되어있으면 list화면으로 이동
 	}
 }

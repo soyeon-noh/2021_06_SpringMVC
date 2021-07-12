@@ -46,17 +46,17 @@ public class GalleryServiceImplV1 implements GalleryService{
 	 * 프로젝트가 Run함과 동시에 실행되며 Dao에 있는 create를 실행하게 된다.
 	 */
 	
-//	@Autowired
-//	public void create_table(GalleryDao gDao) { 
-//		// 여기 Parameters가 없으면 콘솔에 @Autowired는 parameters가 필요하다고 뜸..
-//		// 그래서 아무거나 안에 넣어주는 것이다.
-//		
-//		Map<String, String> maps = new HashMap<String, String>();
-//		
-//		//int maps = 0;
-//		gaDao.create_tabel(maps);
-//		fDao.create_tabel(maps);
-//	}
+	@Autowired
+	public void create_table(GalleryDao gDao) { 
+		// 여기 Parameters가 없으면 콘솔에 @Autowired는 parameters가 필요하다고 뜸..
+		// 그래서 아무거나 안에 넣어주는 것이다.
+		
+		Map<String, String> maps = new HashMap<String, String>();
+		
+		//int maps = 0;
+		gaDao.create_tabel(maps);
+		fDao.create_tabel(maps);
+	}
 	
 	@Override
 	public int insert(GalleryDTO galleryDTO) throws Exception{

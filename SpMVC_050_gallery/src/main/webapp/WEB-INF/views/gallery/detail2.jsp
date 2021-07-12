@@ -78,7 +78,12 @@ div#gallery_under {
 			<c:when test="${not empty GALLERY}">
 			<div id="gallery_files">
 				<c:forEach items="${GALLERY.fileList}" var="FILE">
-					<img src="${rootPath}/files/${FILE.file_upname}" height="100px"/>
+					<c:if test="${empty FILE.file_upname}">
+						<img src="${rootPath}/files/noImage.png" height="100px"/>
+					</c:if>
+					<c:if test="${not empty FILE.file_upname}">
+						<img src="${rootPath}/files/${FILE.file_upname}" height="100px"/>
+					</c:if>
 				</c:forEach>
 			</div>
 			</c:when>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -191,5 +192,13 @@ public class GalleryController {
 		gaService.delete(g_seq);
 		
 		return "redirect:/gallery"; // 로그인이 되어있으면 list화면으로 이동
+	}
+	
+	//fetch에 아무 설정이 없으니 GET이래.. POST도 할 수 있나?!
+	@ResponseBody //응답할때 ..... 문자열보내라..
+	@RequestMapping(value="/file/delete/{seq}", method=RequestMethod.GET)
+	public String file_delete(
+			@PathVariable("seq") String seq) {
+		return "NO"; // 그냥 body없이보내면 404오류된다.
 	}
 }

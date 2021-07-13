@@ -103,6 +103,11 @@ public class FileServiceImplV1 implements FileService{
 		
 		return fileNames;
 	}
+	
+	@Override
+	public int delete(String imgFileName) {
+		return 0;
+	}
 
 
 }

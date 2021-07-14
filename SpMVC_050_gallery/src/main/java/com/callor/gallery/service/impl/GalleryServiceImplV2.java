@@ -21,14 +21,21 @@ public class GalleryServiceImplV2 extends GalleryServiceImplV1{
 	 * 
 	 * @RequireArgConstructor 문제로 상속받은 클래스에서 
 	 * 강제로 생성자 만들어야 함
+	 * 
+	 * eClipse의 자동완성 기능을 사용하여 생성자를 만든다.
+	 * 만약 매개변수로 설정된 요소중에 interface를 상속받은 클래스가
+	 * 2개 이상일 경우 @Qualifier()를 설정해야 하는데
+	 * 
+	 * 이떄 각 매개변수의 요소 type 앞에 작성해 주면된다.
 	 *  
 	 */
-	public GalleryServiceImplV2(
-			GalleryDao gaDao, 
-			FileDao fDao, 
-			@Qualifier("fileServiceV2") FileService fService) {
+	
+	public GalleryServiceImplV2(GalleryDao gaDao, FileDao fDao, 
+			@Qualifier("fileServiceV2")FileService fService) {
 		super(gaDao, fDao, fService);
+		// TODO Auto-generated constructor stub
 	}
+
 
 	@Override
 	public GalleryDTO findByIdGellery(Long g_seq) {

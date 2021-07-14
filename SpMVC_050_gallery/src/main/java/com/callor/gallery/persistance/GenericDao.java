@@ -5,7 +5,8 @@ import java.util.Map;
 
 public interface GenericDao<VO, PK> {
 	public List<VO> selectAll();
-	public VO findById(PK pk);
+	public VO findById(PK pk); // 매개변수가 한개만있을땐 변수명이 상관없다.
+	// mapper에서도 ${}안에 들어가는 것도 아무거나해도된대
 	
 	public int insert(VO vo);
 	public int update(VO vo);

@@ -6,7 +6,10 @@
  <mapper namespace="com.callor.gallery.persistance.ext.FileDao"> <!--  mapper 사용하는 dao경로로 바꾸기 -->
  
  	<select id="selectAll"></select>
- 	<select id="findById"></select>
+ 	<select id="findById" resultType="FileDTO">
+ 		SELECT * FROM tbl_files
+ 		WHERE file_seq = #{file_seq}
+ 	</select>
  	<!-- 데이터 한개씩 개별적으로  Insert -->
  			<!--  parameterType안써도 Insert에선 오류가 안남.. 왜지? 일단 불안하니 넣어둔다. -->
  	<insert id="insert" parameterType="FileDTO">

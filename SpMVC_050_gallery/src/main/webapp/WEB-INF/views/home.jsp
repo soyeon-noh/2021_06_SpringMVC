@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>GALLERY SOYEON</title>
+<script src="https://kit.fontawesome.com/6c687ea38d.js" crossorigin="anonymous"></script>
 <style>
 *{
 	box-sizing: border-box;

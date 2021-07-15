@@ -2,6 +2,7 @@ package com.callor.gallery.service;
 
 import java.util.List;
 
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -22,6 +23,7 @@ public interface GalleryService {
 	 * 		일정한 분량으로 잘라 List를 return 하기
 	 */
 	public List<GalleryDTO> selectAllPage(int pageNum) throws Exception;
+	public List<GalleryDTO> selectAllPage(int intPageNum, Model model) throws Exception;
 	
 	/*
 	 * 검색 조건과 pageNum값을 매개변수로 받아서
@@ -38,6 +40,11 @@ public interface GalleryService {
 	public List<GalleryFilesDTO> findByGalleryFiles(Long g_seq);
 	
 	public GalleryDTO findByIdGellery(Long g_seq);
+	public List<GalleryDTO> findBySearchPage(String search_column, 
+							String search_text, 
+							int pageNum, Model model);
 	public int delete(Long g_seq);
 	public int file_delete(Long g_seq);
+	
+
 }

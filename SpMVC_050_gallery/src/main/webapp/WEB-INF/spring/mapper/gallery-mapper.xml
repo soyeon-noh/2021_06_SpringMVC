@@ -5,6 +5,11 @@
   
  <mapper namespace="com.callor.gallery.persistance.ext.GalleryDao"> <!--  dao있는곳으로 바꾸기 -->
  
+ 	<select id="countAll" resultType="Integer">
+ 		SELECT COUNT(*) FROM tbl_gallery
+ 	</select>
+ 
+ 
  	<!-- 최신글이 위로 올라오게. 날짜 역순 -->
  	<select id="selectAll" resultType="GalleryDTO">
  		SELECT * FROM tbl_gallery
@@ -14,6 +19,28 @@
  		SELECT * FROM tbl_gallery
  		WHERE g_seq = #{g_seq}
  	</select>
+ 	
+ 	<!-- 매개변수로 칼럼명과 검색어를 전달받아서 조건검색 -->
+ 	<!-- 	칼럼명에따라 쿼리가 달라지게 해야함! (동적쿼리!!) -->
+ 	<!--
+ 		동적 SQL 
+ 		전달받은 매개변수에 따라 값이아니라!! SQL이 바뀌는 코드 
+ 	-->
+ 	<select id="findBySearch" resultType="GalleryDTO">
+ 		SELECT * FROM tbl_gallery
+ 		<if test="text != null and text != 'NONE'">
+	 		<if test="column == 'g_subject'">
+	 			WHERE g_subject LIKE CONCAT('%', #{text}, '%')
+	 		</if>
+	 		<if test="column == 'g_writer'">
+	 			WHERE g_writer LIKE CONCAT('%', #{text}, '%')
+	 		</if>
+	 		<if test="column == 'g_content'">
+	 			WHERE g_content LIKE CONCAT('%', #{text}, '%')
+	 		</if>
+ 		</if>
+ 	</select>
+ 	<!--  text="변수명 == '문자열'" -->
  	
  	<!-- 
  	select된 결과를 DTO와 매칭하는 중간단계 RowMapper

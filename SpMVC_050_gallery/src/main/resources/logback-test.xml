@@ -17,7 +17,10 @@
     <logger name="com.callor.gallery.service"> <!-- 위에거 복사 -->
     	<level value="DEBUG"  additivity="false"/> <!-- DEBUG로 변경 -->
     </logger>
-    
+    <logger name="com.callor.gallery.persistance"> <!-- 위에거 복사 -->
+    	<level value="DEBUG"  additivity="false"/> <!-- DEBUG로 변경 -->
+    </logger>
+        
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
     </root>

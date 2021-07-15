@@ -8,16 +8,19 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.gallery.model.FileDTO;
 import com.callor.gallery.model.GalleryDTO;
 import com.callor.gallery.model.GalleryFilesDTO;
+import com.callor.gallery.model.PageDTO;
 import com.callor.gallery.persistance.ext.FileDao;
 import com.callor.gallery.persistance.ext.GalleryDao;
 import com.callor.gallery.service.FileService;
 import com.callor.gallery.service.GalleryService;
+import com.callor.gallery.service.PageService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,6 +44,8 @@ public class GalleryServiceImplV1 implements GalleryService{
 	
 	@Qualifier("fileServiceV2") // 이거 안넣어주면 1,2가 다나옴(오류)
 	protected final FileService fService;
+	
+	protected final PageService pageService;
 	
 	/*
 	 * @Autowired가 설정된 변수, method, 객체 등을 만나면
@@ -214,6 +219,28 @@ public class GalleryServiceImplV1 implements GalleryService{
 		}
 		return pageList;
 	}
+	
+	// 모델을 Controller에서 매개변수로 넘겨받았을때 
+	// Service에서도 addAttribute로 jsp에 데이터를 넘겨줄 수 있다.
+	@Override
+	public List<GalleryDTO> selectAllPage(int intPageNum, Model model) throws Exception{
+		
+		List<GalleryDTO> galleryAll = gaDao.selectAll();
+		int totalListSize = galleryAll.size(); // count를 사용하면 비용이 많이든다. 한번의 쿼리로 최대한 뽑기
+		
+		PageDTO pageDTO = pageService.makePagination(totalListSize, intPageNum);
+		
+		List<GalleryDTO> pageList = new ArrayList<>();
+		
+		for(int i = pageDTO.getOffset(); i < pageDTO.getLimit(); i++) {
+			pageList.add(galleryAll.get(i));
+		}
+		
+		model.addAttribute("PAGE_NAV", pageDTO);
+		model.addAttribute("GALLERYS", pageList);
+		return null;
+	}
+	
 
 	@Override
 	public List<GalleryDTO> findBySearchPage(int pageNu, String search) {
@@ -228,4 +255,32 @@ public class GalleryServiceImplV1 implements GalleryService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<GalleryDTO> findBySearchPage(String search_column, String search_text, int pageNum, Model model) {
+			
+		List<GalleryDTO> galleryList 
+			= gaDao.findBySearch(search_column, search_text);
+		
+		int totalListSize = galleryList.size();
+		PageDTO pageDTO = pageService.makePagination(totalListSize, pageNum);
+		
+		List<GalleryDTO> pageList = new ArrayList<>();
+		
+		// 검색결과가 없는경우 전체데이터를 보여주라..?
+		if(pageDTO == null) {
+			model.addAttribute("GALLERYS", galleryList);
+			return null;
+		}
+		
+		for(int i = pageDTO.getOffset(); i < pageDTO.getLimit(); i++) {
+			pageList.add(galleryList.get(i));
+		}
+		
+		model.addAttribute("GALLERYS", pageList);
+		
+		return null;
+	}
+
+
 }

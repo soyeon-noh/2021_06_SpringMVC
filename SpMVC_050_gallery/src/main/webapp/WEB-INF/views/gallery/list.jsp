@@ -62,8 +62,9 @@
 		color: #FF0081;
 	}
 </style>
-
+<%@ include file="/WEB-INF/views/include/include_gallery_search.jsp" %>
 <div class="container">
+<section id="image_list_section">
 <c:forEach items="${GALLERYS}" var="GALLERY">
 
 	<div class="ga_box">
@@ -85,6 +86,7 @@
 		</div>
 	</div>
 </c:forEach>
+</section>
 <%@ include file="/WEB-INF/views/include/include_page_nav.jspf" %>
 </div>
 

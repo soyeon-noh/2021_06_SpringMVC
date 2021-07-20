@@ -2,104 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var = "rootPath" value="${pageContext.request.contextPath}"/>
+<c:url value="${rootPath}/static/css/detail.css" var="detail_css"/>
+
+<Link href="${detail_css}" rel="stylesheet"/>
 
 <style>
-@font-face {
-     font-family: 'DungGeunMo';
-     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
-     font-weight: normal;
-     font-style: normal;
-}
-div.container {
-	font-family: 'DungGeunMo';
-	width: 500px;
-	height: 600px;
-	border: 5px solid #59e0a0;
-	
-	padding: 20px;
-	margin: 0 auto;
-	
-	background-color: #14121b;
-	
-}
-
-div#gallery_info h3 {
-	
-	color: #59e0a0;
-	
-	text-align: center;
-	font-size: 28px;
-	
-}
-
-div#gallery_info h5 {
-	
-	color: white;
-	text-align: center;
-	margin-bottom: 10px;
-}
-
-div#gallery_info p {
-	
-	color: white;
-	text-align: right;
-}
-
-div#gallery_under {
-	
-	margin:	20px 0; 
-	
-
-}
-
-/* 이거 쓰라해서 썼는데 나랑 화면달라서 의미가 없음 */
-	div#gallery_files div.gallery_file {
-		width: 200px;
-		height: 200px;
-		padding: 5px;
-		overflow: hidden;
-		position: relative;
-	}
-	div.gallery_file:after {
-		content: "";
-		position: absolute;
-		left: 0;
-		top: 0;
-		bottom: 0;
-		right: 0;
-		background-color: transparent;
-		color: transparent;
-		z-index: 10;
-		transition: 0.5s;
-		
-		/* box 내의 text의 그려지는 높이를 
-		box의 높이와 같게 만들면 
-		text가 box의 세로방향에서 가운데 정렬이 된다. (높이기준 가운데정렬) */ 
-		line-height: 200px;
-		text-align: center;
-	}
-	div.gallery_file:hover:after {
-		content: '\f2ed'; /* 쓰레기통 아이콘 */
-		
-		font-size: 30px;
-		font-family: "Font Awesome 5 Free";
-		
-		background-color: rgba(0,0,0,0.5);
-		color: white;
-		cursor: pointer;
-	}
-	
-	
-
-	div#gallery_files {
-		display: flex;
-		flex-wrap: wrap;
-	}
-	
-	div#gallery_files img {
-		margin: 2px;
-		flex: 1;
-	}
 
 </style>
 <div class="container">

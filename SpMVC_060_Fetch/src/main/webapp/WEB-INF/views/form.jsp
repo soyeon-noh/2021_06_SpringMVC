@@ -34,5 +34,5 @@
 <script>
 var rootPath = "${rootPath}"
 </script>
-<script src="${rootPath}/static/form.js?ver=2021-07-20-003"></script>
+<script src="${rootPath}/static/form.js?ver=2021-07-20-006"></script>
 </html>

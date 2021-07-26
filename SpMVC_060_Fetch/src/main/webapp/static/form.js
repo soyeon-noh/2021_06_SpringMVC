@@ -18,27 +18,26 @@ if (button) {
         },
         body: jsonFormData,
       };
-      fetch(`${rootPath}/form`, jsonOption)
-        .then((res) => res.json)
+      fetch(`${rootPath}/form/json`, jsonOption)
+        .then((res) => res.json())
         .then((result) => {
           document.writeln(JSON.stringify(result));
         });
     }
   });
+}
+let button_2 = document.querySelector("button#form_2");
+if (button_2) {
+  button_2.addEventListener("click", (e) => {
+    let form1 = document.querySelector("form#user_form");
+    const formData = new FormData(form1); // form에 있는걸 통쨰로 json으로 바꾸는 것
+    //content type도 지정안해도됨. 가장쉬움
 
-  let button_2 = document.querySelector("button#form_2");
-  if (button_2) {
-    button_2.addEventListener("click", (e) => {
-      let form1 = document.querySelector("form#user_form");
-      const formData = new FormData(form1); // form에 있는걸 통쨰로 json으로 바꾸는 것
-      //content type도 지정안해도됨. 가장쉬움
-
-      fetch(`${rootPath}/form`, {
-        method: "POST",
-        body: new URLSearchParams(formData), // form을 ajax로 전송하는 가장 쉬운코드
-      })
-        .then((res) => res.json())
-        .then((result = document.writeln(JSON.stringify(result))));
-    });
-  }
+    fetch(`${rootPath}/form/data`, {
+      method: "POST",
+      body: new URLSearchParams(formData), // form을 ajax로 전송하는 가장 쉬운코드
+    })
+      .then((res) => res.json())
+      .then((result) => document.writeln(JSON.stringify(result)));
+  });
 }
